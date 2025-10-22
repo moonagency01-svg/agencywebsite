@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moon Agency - Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="My Logo">
+      <span class="company-name">Moon Agency</span>
+    </div>
+
+    <!-- Language Selector -->
+    <div class="lang-select">
+      <select>
+        <option value="en">English</option>
+        <option value="tl">Tagalog</option>
+      </select>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    <nav id="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="host.html">Host</a></li>
+        <li><a href="pk-event.html">PK Event</a></li>
+        <li><a href="tutorial.html">Tutorial</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="about.html">About</a></li>
+      
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+<main>
+  <section id="home" class="home-section">
+    <div class="home-content">
+      <img src="images/logo.png" alt="Moon Agency Logo" class="home-logo">
+      <h2>Welcome to Moon Agency</h2>
+      <p>
+        Moon Agency is an official Bigo PH agency (PH-MOON2) dedicated to supporting hosts, streamers, and content creators.<br>
+        We help our members grow their audience, develop engaging content, and achieve success on and off the platform.
+      </p>
+    </div>
+  </section>
+</main>
+
+  <!-- Footer -->
+<footer class="footer-contact">
+  <p>Contact Us:
+    <br>
+    📧 Manager:<a href="mailto:MoonAgency01@gmail.com">MoonAgency01@gmail.com</a> 
+
+<br>
+    🤝 Co-Manager Eka: <a href="mailto:Iricabryan@gmail.com">Iricabryan@gmail.com</a></p>
+  <p>&copy; 2025 Moon Agency</p>
+</footer>
+
+  <!-- JS for Menu Toggle -->
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const navbar = document.getElementById("navbar");
+
+    toggle.addEventListener("click", () => {
+      navbar.classList.toggle("active");
+
+      // Toggle between ☰ and ✖
+      if (toggle.innerHTML === "&#9776;") {
+        toggle.innerHTML = "&times;";
+      } else {
+        toggle.innerHTML = "&#9776;";
+      }
+    });
+  </script>
+</body>
+</html>

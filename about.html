@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="My Logo">
+      <span class="company-name">Moon Agency</span>
+    </div>
+
+    <!-- Language Selector -->
+    <div class="lang-select">
+      <select>
+        <option value="en">English</option>
+        <option value="tl">Tagalog</option>
+      </select>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    <nav id="navbar">
+       <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="host.html">Host</a></li>
+        <li><a href="pk-event.html">PK Event</a></li>
+        <li><a href="tutorial.html">Tutorial</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="about.html">About</a></li>
+      
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+    <main>
+   <section>
+  <h2>About Us</h2>
+  <p>We are a professional livestreaming agency dedicated to helping aspiring content creators grow and succeed on <strong>Bigo Live</strong>. Our mission is to guide, support, and empower individuals who want to showcase their talents, connect with audiences, and earn through livestreaming.</p>
+
+  <p>As an official agency, we provide our hosts with:</p>
+  <ul>
+
+    <li>✅ Growth strategies to increase followers and engagement</li>
+    <li>✅ Technical support and guidance</li>
+    <li>✅ Opportunities to earn while doing what they love</li>
+  </ul>
+
+  <p>We are always looking for passionate and talented individuals who want to become livestreaming hosts. Whether you’re new to livestreaming or already experienced, we will help you build your career on Bigo Live.</p>
+
+  <p>Join us today and start your journey as a livestreaming host!</p>
+</section>
+  </main>
+
+  <!-- Footer -->
+<footer class="footer-contact">
+  <p>Contact Us:
+    <br>
+    📧 Manager:<a href="mailto:MoonAgency01@gmail.com">MoonAgency01@gmail.com</a> 
+
+<br>
+    🤝 Co-Manager Eka: <a href="mailto:Iricabryan@gmail.com">Iricabryan@gmail.com</a></p>
+  <p>&copy; 2025 Moon Agency</p>
+</footer>
+
+  <!-- JS for Menu Toggle -->
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const navbar = document.getElementById("navbar");
+
+    toggle.addEventListener("click", () => {
+      navbar.classList.toggle("active");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PK Event</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="My Logo">
+      <span class="company-name">Moon Agency</span>
+    </div>
+
+    <!-- Language Selector -->
+    <div class="lang-select">
+      <select>
+        <option value="en">English</option>
+        <option value="tl">Tagalog</option>
+      </select>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    <nav id="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="host.html">Host</a></li>
+        <li><a href="pk-event.html">PK Event</a></li>
+        <li><a href="tutorial.html">Tutorial</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="about.html">About</a></li>
+      
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+<main>
+  <section id="pk-events">
+    <h2>PK Events</h2>
+
+    <!-- Search box -->
+    <input 
+      type="text" 
+      id="searchBox" 
+      placeholder="Search by date, name, or ID..." 
+      style="margin-bottom:10px; padding:5px; width:100%; max-width:400px;"
+    >
+
+    <table class="event-table">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Name</th>
+          <th>ID</th>
+          <th>Opponent ID</th>
+        </tr>
+      </thead>
+      <tbody id="event-table">
+        <tr><td colspan="6">Loading...</td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<script>
+  // Replace with your deployed web app URL from Google Apps Script
+  const apiUrl = "https://script.google.com/macros/s/AKfycbz2jYz0ifZvFoQi4_Ka11rSUnfzoiZUfsJldXyIvn3mpnwGCEqftbvDPFy_FBUpJHR7dQ/exec";
+
+  fetch(apiUrl)
+    .then(res => res.json())
+    .then(data => {
+      let html = "";
+      data.forEach(event => {
+        html += ` 
+          <tr>
+            <td>${event.event}</td>
+            <td>${event.date}</td>
+            <td>${event.time}</td>
+            <td>${event.name}</td>
+            <td>${event.id}</td>
+            <td>${event.opponent}</td>
+          </tr>
+        `;
+      });
+      document.getElementById("event-table").innerHTML = html;
+    })
+    .catch(err => {
+      console.error("Error fetching data:", err);
+      document.getElementById("event-table").innerHTML = "<tr><td colspan='6'>Failed to load data</td></tr>";
+    });
+
+
+    
+</script>
+
+<script>
+  // Search filter
+  document.getElementById("searchBox").addEventListener("keyup", function() {
+    const filter = this.value.toLowerCase();
+    const rows = document.querySelectorAll("#event-table tr");
+
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      row.style.display = text.includes(filter) ? "" : "none";
+    });
+  });
+</script>
+
+
+  <!-- Footer -->
+<footer class="footer-contact">
+  <p>Contact Us:
+    <br>
+    📧 Manager:<a href="mailto:MoonAgency01@gmail.com">MoonAgency01@gmail.com</a> 
+
+<br>
+    🤝 Co-Manager Eka: <a href="mailto:Iricabryan@gmail.com">Iricabryan@gmail.com</a></p>
+  <p>&copy; 2025 Moon Agency</p>
+</footer>
+
+  <!-- JS for Menu Toggle -->
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const navbar = document.getElementById("navbar");
+
+    toggle.addEventListener("click", () => {
+      navbar.classList.toggle("active");
+    });
+  </script>
+</body>
+</html>

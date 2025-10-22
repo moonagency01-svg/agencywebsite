@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="My Logo">
+      <span class="company-name">Moon Agency</span>
+    </div>
+
+   
+    <!-- Language Selector -->
+    <div class="lang-select">
+      <label for="lang">Language:</label>
+      <select id="lang">
+        <option value="en">English</option>
+        <option value="tl">Tagalog</option>
+      </select>
+    </div>
+
+    <!-- Part Selector -->
+    <div class="part-select">
+      <label for="part">Part:</label>
+      <select id="part">
+        <option value="part1">1</option>
+        <option value="part2">2</option>
+      </select>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    <nav id="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="host.html">Host</a></li>
+        <li><a href="pk-event.html">PK Event</a></li>
+        <li><a href="tutorial.html">Tutorial</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="about.html">About</a></li>
+   
+      </ul>
+    </nav>
+  </header>
+
+ <!-- Main Content -->
+  <main>
+    <h2>Tutorial Videos</h2>
+
+    <!-- Playlist Containers -->
+    <div id="part1-en" class="playlist">
+      <iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/videoseries?list=PLs8eaN3BYBws-Aiyz3ZFHa5d6EQ4cuVyZ"
+        title="Part 1 English Playlist"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+
+    <div id="part1-tl" class="playlist" style="display:none;">
+      <iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/videoseries?list=PLs8eaN3BYBwtaIb-mGK-2LXLyxcoMQ1Qf"
+        title="Part 1 Tagalog Playlist"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+
+    <div id="part2-en" class="playlist" style="display:none;">
+      <iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/videoseries?list=PLs8eaN3BYBwv3xke5QrdIPnWiOvSLk3v9"
+        title="Part 2 English Playlist"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+
+    <div id="part2-tl" class="playlist" style="display:none;">
+      <iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/videoseries?list=PLs8eaN3BYBwsMGZ53Lc-KxAA9Q6Tmi6Aq"
+        title="Part 2 Tagalog Playlist"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </main>
+
+  <!-- Footer -->
+<footer class="footer-contact">
+  <p>Contact Us:
+    <br>
+    📧 Manager:<a href="mailto:MoonAgency01@gmail.com">MoonAgency01@gmail.com</a> 
+
+<br>
+    🤝 Co-Manager Eka: <a href="mailto:Iricabryan@gmail.com">Iricabryan@gmail.com</a></p>
+  <p>&copy; 2025 Moon Agency</p>
+</footer>
+
+
+  <!-- JS for Switching -->
+  <script>
+    const langSelect = document.getElementById("lang");
+    const partSelect = document.getElementById("part");
+
+    const playlists = {
+      "part1-en": document.getElementById("part1-en"),
+      "part1-tl": document.getElementById("part1-tl"),
+      "part2-en": document.getElementById("part2-en"),
+      "part2-tl": document.getElementById("part2-tl")
+    };
+
+    function updatePlaylist() {
+      // Hide all
+      Object.values(playlists).forEach(el => el.style.display = "none");
+
+      // Build key (like "part1-en" or "part2-tl")
+      const key = partSelect.value + "-" + langSelect.value;
+      playlists[key].style.display = "block";
+    }
+
+    langSelect.addEventListener("change", updatePlaylist);
+    partSelect.addEventListener("change", updatePlaylist);
+  </script>
+</body>
+</html>

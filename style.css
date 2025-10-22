@@ -1,0 +1,374 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: #004080; /* dark blue background */
+  color: yellow; /* yellow text */
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #00264d; /* darker blue */
+  color: yellow;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+.company-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: yellow;
+}
+
+/* Language Selector */
+.lang-select select {
+  padding: 5px;
+  border-radius: 4px;
+  border: none;
+  background: #0066cc; /* lighter blue */
+  color: yellow;
+  font-weight: bold;
+}
+
+/* Navbar */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+nav ul li a {
+  color: yellow;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+nav ul li a:hover {
+  background: #0066cc;
+  color: yellow;
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: yellow;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #00264d;
+    width: 200px;
+    display: none;
+    padding: 15px;
+    border-radius: 8px 0 0 8px;
+  }
+
+  nav.active ul {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* Main Content */
+main {
+  padding: 20px;
+}
+main h2 {
+  margin-bottom: 10px;
+  color: yellow;
+}
+main p {
+  color: yellow;
+}
+
+/* Footer */
+footer {
+  background: #00264d;
+  color: yellow;
+  text-align: center;
+  padding: 15px 10px;
+  margin-top: 20px;
+  border-top: 4px solid #0066cc;
+}
+
+.footer-contact {
+  background: #001a33;
+  color: yellow;
+  text-align: center;
+  padding: 15px;
+}
+
+.footer-contact a {
+  color: yellow;
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  text-decoration: underline;
+}
+
+/* Transparent table, only borders */
+.event-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;  /* No background */
+  color: yellow;            /* Text color */
+}
+
+.event-table th,
+.event-table td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid yellow; /* Keeps the lines between data */
+  background: transparent;  /* Clear background */
+}
+
+.event-table th {
+  text-transform: uppercase; /* Header uppercase */
+}
+
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px;
+  scroll-behavior: smooth;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.host-card {
+  min-width: 200px;
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+.host-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.host-card h3 {
+  margin: 10px 0 5px;
+  font-size: 18px;
+}
+
+.host-card p {
+  font-size: 14px;
+  color: gray;
+}
+
+ /* Carousel */
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px;
+      scroll-behavior: smooth;
+    }
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+    .host-card {
+      min-width: 200px;
+      text-align: center;
+      flex: 0 0 auto;
+      cursor: pointer;
+    }
+    .host-card img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+    background: #004080;   /* same as body */
+    color: yellow;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;      /* limit height to 80% of screen */
+    overflow-y: auto;      /* add vertical scroll if content overflows */
+    text-align: center;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+    .modal-content img {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+    .modal-content iframe {
+      width: 100%;
+      height: 250px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 8px;
+    }
+    .close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: yellow; /* match theme */
+    cursor: pointer;
+    }
+
+
+    .modal-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .modal-left {
+  flex: 1;
+  min-width: 200px;
+  text-align: left;
+  }
+
+  .modal-right {
+  flex: 2;
+  text-align: center;
+  }
+
+  .game-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.game-card {
+  background: #00264d; /* same theme as your site */
+  color: yellow;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+
+.game-card:hover {
+  transform: scale(1.05);
+}
+
+.game-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.game-card h3 {
+  font-size: 16px;
+  margin: 8px 0 5px;
+}
+
+.game-card p {
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+
+.game-card a {
+  display: inline-block;
+  color: yellow;              /* Yellow link text */
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.game-card a:hover {
+  color: orange;              /* Change to orange on hover */
+  text-decoration: underline; /* Optional: underline effect */
+}
+
+/* Home Section Styling */
+.home-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 80vh;
+  background-color: #0a0a0a; /* Optional dark background */
+  color: #fff; /* Text color */
+  padding: 20px;
+}
+
+.home-content {
+  max-width: 700px;
+}
+
+.home-logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.home-section h2 {
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: #ffd700; /* Gold/yellow text */
+}
+
+.home-section p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #f5f5f5;
+}

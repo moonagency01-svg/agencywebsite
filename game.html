@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="My Logo">
+      <span class="company-name">Moon Agency</span>
+    </div>
+
+    <!-- Language Selector -->
+    <div class="lang-select">
+      <select>
+        <option value="en">English</option>
+        <option value="tl">Tagalog</option>
+      </select>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    <nav id="navbar">
+       <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="host.html">Host</a></li>
+        <li><a href="pk-event.html">PK Event</a></li>
+        <li><a href="tutorial.html">Tutorial</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="about.html">About</a></li>
+     
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section id="game">
+ 
+    <h2>Agency Games</h2>
+      <p>Coming Soon....</p>
+
+      <!--
+    <div class="game-list">
+    
+      <div class="game-card agency">
+        <img src="images/game/HungryCats.png" alt="Game 1">
+        <h3>Hungry Cats</h3>
+        <p>Type: Catcher</p>
+        <a href="https://play.google.com/store/apps/details?id=com.moonagency.clicker" target="_blank">
+          Play on Google Play
+        </a>
+      </div>
+
+      
+      <div class="game-card agency">
+        <img src="images/game/AlienWacker.png" alt="Game 2">
+        <h3>Alien Wacker</h3>
+        <p>Type: Arcade</p>
+        <a href="https://play.google.com/store/apps/details?id=com.moonagency.puzzle" target="_blank">
+          Play on Google Play
+        </a>
+      </div>
+    </div>
+    -->
+
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+<footer class="footer-contact">
+  <p>Contact Us:
+    <br>
+    📧 Manager:<a href="mailto:MoonAgency01@gmail.com">MoonAgency01@gmail.com</a> 
+
+<br>
+    🤝 Co-Manager Eka: <a href="mailto:Iricabryan@gmail.com">Iricabryan@gmail.com</a></p>
+  <p>&copy; 2025 Moon Agency</p>
+</footer>
+  <!-- JS for Menu Toggle -->
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const navbar = document.getElementById("navbar");
+
+    toggle.addEventListener("click", () => {
+      navbar.classList.toggle("active");
+    });
+  </script>
+</body>
+</html>
