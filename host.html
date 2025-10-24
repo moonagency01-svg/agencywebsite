@@ -69,7 +69,7 @@ const apiUrl = "https://script.google.com/macros/s/AKfycbw1H8IqHuFhj64EubV3eRJa_
 const eventApiUrl = "https://script.google.com/macros/s/AKfycbz2jYz0ifZvFoQi4_Ka11rSUnfzoiZUfsJldXyIvn3mpnwGCEqftbvDPFy_FBUpJHR7dQ/exec"; // Your PK event API URL
 
   // Optional: allow CORS proxy for testing
-  const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}?referer=${myDomain}`;
+  const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}&referer=${myDomain}`;
   const carousel = document.getElementById("host-carousel");
 
   // Modal elements
@@ -190,6 +190,7 @@ if (youtubeLink) {
   </script>
 </body>
 </html>
+
 
 
 
