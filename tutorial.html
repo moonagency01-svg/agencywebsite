@@ -126,5 +126,14 @@
     langSelect.addEventListener("change", updatePlaylist);
     partSelect.addEventListener("change", updatePlaylist);
   </script>
+<script>
+    const toggle = document.getElementById("menu-toggle");
+    const navbar = document.getElementById("navbar");
+
+    toggle.addEventListener("click", () => {
+      navbar.classList.toggle("active");
+    });
+  </script>
+  
 </body>
 </html>
