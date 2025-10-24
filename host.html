@@ -69,8 +69,7 @@ const apiUrl = "https://script.google.com/macros/s/AKfycbx2zLWFmYYeIi8LzGcaqu-aY
 const eventApiUrl = "https://script.google.com/macros/s/AKfycbz2jYz0ifZvFoQi4_Ka11rSUnfzoiZUfsJldXyIvn3mpnwGCEqftbvDPFy_FBUpJHR7dQ/exec"; // Your PK event API URL
 
 
-// ✅ Build the full URL for fetching hosts
-const fullUrl = `${apiUrl}?referer=${encodeURIComponent(myDomain)}`;
+
 const carousel = document.getElementById("host-carousel");
 
 // Modal elements
@@ -82,15 +81,16 @@ const modalVideoContainer = document.getElementById("modalVideoContainer");
 const modalEvents = document.getElementById("modalEvents");
 const closeModal = document.querySelector(".close");
 
-// ✅ Load host list
-fetch(fullUrl)
-  .then(res => {
-    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-    return res.json();
-  })
+// Use a CORS proxy to bypass Google’s CORS restriction
+const proxyUrl = https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl + "?referer=" + myDomain)};
+
+fetch(proxyUrl)
+  .then(res => res.json())
   .then(data => {
     console.log("✅ Host data:", data);
+    const carousel = document.getElementById("host-carousel");
     carousel.innerHTML = "";
+   
 
     if (!data.length) {
       carousel.innerHTML = "<p>No hosts found.</p>";
@@ -196,6 +196,7 @@ window.addEventListener("click", e => {
   </script>
 </body>
 </html>
+
 
 
 
