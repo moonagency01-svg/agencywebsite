@@ -107,7 +107,7 @@ fetch(fullUrl)
       const card = document.createElement("div");
       card.classList.add("host-card");
       card.innerHTML = `
-        <img src="${photoUrl}" 
+        <img src="${photoUrl || defaultSrc}" 
              alt="${hostName}" 
              onerror="this.onerror=null;this.src='${defaultSrc}'">
         <h3>${hostName}</h3>
@@ -115,6 +115,7 @@ fetch(fullUrl)
         ${youtubeLink ? `<a href="${youtubeLink}" target="_blank">🎥 YouTube</a>` : ""}
       `;
 
+      
       // 🔹 Open modal when host is clicked
       card.addEventListener("click", () => {
         modal.style.display = "flex";
@@ -195,6 +196,7 @@ window.addEventListener("click", e => {
   </script>
 </body>
 </html>
+
 
 
 
