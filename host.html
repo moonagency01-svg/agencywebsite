@@ -82,7 +82,7 @@ const modalEvents = document.getElementById("modalEvents");
 const closeModal = document.querySelector(".close");
 
 // Use a CORS proxy to bypass Google’s CORS restriction
-const proxyUrl = https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl + "?referer=" + myDomain)};
+const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl + "?referer=" + myDomain)}`;
 
 fetch(proxyUrl)
   .then(res => res.json())
@@ -196,6 +196,7 @@ window.addEventListener("click", e => {
   </script>
 </body>
 </html>
+
 
 
 
