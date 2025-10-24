@@ -60,112 +60,117 @@
     </div>
   </div>
 
-  <script>
-  // ✅ Your GitHub domain
- const myDomain = "https://moonagency01-svg.github.io/agencywebsite";
+ <script>
+// ✅ Your GitHub Pages domain
+const myDomain = "https://moonagency01-svg.github.io/agencywebsite";
 
-  // ✅ Replace with your actual Apps Script URLs
+// ✅ Replace these with your actual deployed Apps Script URLs
 const apiUrl = "https://script.google.com/macros/s/AKfycbw1H8IqHuFhj64EubV3eRJa_4C1Ka8O8Q0uF8ThVEnqFZgdwyhdg-7b3GmESvhfMcUqlg/exec;" // Your host API URL
 const eventApiUrl = "https://script.google.com/macros/s/AKfycbz2jYz0ifZvFoQi4_Ka11rSUnfzoiZUfsJldXyIvn3mpnwGCEqftbvDPFy_FBUpJHR7dQ/exec"; // Your PK event API URL
 
-  // Optional: allow CORS proxy for testing
- const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl + "?referer=" + myDomain)}`;
-  const carousel = document.getElementById("host-carousel");
 
-  // Modal elements
-  const modal = document.getElementById("hostModal");
-  const modalImg = document.getElementById("modalImage");
-  const modalName = document.getElementById("modalName");
-  const modalId = document.getElementById("modalId");
-  const modalVideoContainer = document.getElementById("modalVideoContainer");
-  const modalEvents = document.getElementById("modalEvents");
-  const closeModal = document.querySelector(".close");
+// ✅ Build the full URL for fetching hosts
+const fullUrl = `${apiUrl}?referer=${encodeURIComponent(myDomain)}`;
+const carousel = document.getElementById("host-carousel");
 
-  // Load host list
-  fetch(proxyUrl)
-    .then(res => res.json())
-    .then(data => {
-      carousel.innerHTML = "";
+// Modal elements
+const modal = document.getElementById("hostModal");
+const modalImg = document.getElementById("modalImage");
+const modalName = document.getElementById("modalName");
+const modalId = document.getElementById("modalId");
+const modalVideoContainer = document.getElementById("modalVideoContainer");
+const modalEvents = document.getElementById("modalEvents");
+const closeModal = document.querySelector(".close");
 
-      if (!data.length) {
-        carousel.innerHTML = "<p>No hosts found.</p>";
-        return;
-      }
+// ✅ Load host list
+fetch(fullUrl)
+  .then(res => {
+    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+    return res.json();
+  })
+  .then(data => {
+    console.log("✅ Host data:", data);
+    carousel.innerHTML = "";
 
-      data.forEach(host => {
-        const hostId = host.id;
-        const hostName = host.name;
-        const youtubeLink = host.youtube;
-        const photoUrl = host.pictureurl; // Column D
-        const defaultSrc = "images/hosts/default.webp";
+    if (!data.length) {
+      carousel.innerHTML = "<p>No hosts found.</p>";
+      return;
+    }
 
-        const card = document.createElement("div");
-        card.classList.add("host-card");
-        card.innerHTML = `
-          <img src="${photoUrl || defaultSrc}" 
-               alt="${hostName}" 
-               onerror="this.onerror=null;this.src='${defaultSrc}'">
-          <h3>${hostName}</h3>
-          <p>ID: ${hostId}</p>
-          ${youtubeLink ? `<a href="${youtubeLink}" target="_blank">🎥 YouTube</a>` : ""}
-        `;
+    data.forEach(host => {
+      const hostId = host.id;
+      const hostName = host.name;
+      const youtubeLink = host.youtube;
+      const photoUrl = host.pictureurl || "images/hosts/default.webp";
+      const defaultSrc = "images/hosts/default.webp";
 
-        // 🔹 Open modal when host clicked
-        card.addEventListener("click", () => {
-          modal.style.display = "flex";
-          modalImg.src = photoUrl || defaultSrc;
-          modalName.textContent = hostName;
-          modalId.textContent = `ID: ${hostId}`;
+      const card = document.createElement("div");
+      card.classList.add("host-card");
+      card.innerHTML = `
+        <img src="${photoUrl}" 
+             alt="${hostName}" 
+             onerror="this.onerror=null;this.src='${defaultSrc}'">
+        <h3>${hostName}</h3>
+        <p>ID: ${hostId}</p>
+        ${youtubeLink ? `<a href="${youtubeLink}" target="_blank">🎥 YouTube</a>` : ""}
+      `;
 
-          // 🔹 Embed YouTube Playlist
-if (youtubeLink) {
-            modalVideoContainer.innerHTML = `
-              <iframe src="https://www.youtube.com/embed/videoseries?list=${youtubeLink}"
-                      allowfullscreen></iframe>
-            `;
-          } else {
-            modalVideoContainer.innerHTML = "<p>No video available</p>";
-          }
+      // 🔹 Open modal when host is clicked
+      card.addEventListener("click", () => {
+        modal.style.display = "flex";
+        modalImg.src = photoUrl;
+        modalName.textContent = hostName;
+        modalId.textContent = `ID: ${hostId}`;
 
-          // 🔹 Load PK Events
-          fetch(eventApiUrl)
-            .then(res => res.json())
-            .then(events => {
-              const filtered = events.filter(e => e.id.toLowerCase() === hostId.toLowerCase());
-              if (filtered.length) {
-                modalEvents.innerHTML = filtered.map(e => `
-                  <li>
-                    <strong>${e.event}</strong><br>
-                    ${e.date} ${e.time}<br>
-                    vs ${e.opponent}
-                  </li>
-                `).join("");
-              } else {
-                modalEvents.innerHTML = "<li>No PK events found</li>";
-              }
-            })
-            .catch(err => {
-              console.error("Error loading events:", err);
-              modalEvents.innerHTML = "<li>Failed to load events</li>";
-            });
-        });
+        // 🔹 Embed YouTube Playlist or Video
+        if (youtubeLink) {
+          modalVideoContainer.innerHTML = `
+            <iframe src="https://www.youtube.com/embed/videoseries?list=${youtubeLink}"
+                    allowfullscreen></iframe>
+          `;
+        } else {
+          modalVideoContainer.innerHTML = "<p>No video available</p>";
+        }
 
-        carousel.appendChild(card);
+        // 🔹 Load PK Events
+        fetch(eventApiUrl)
+          .then(res => res.json())
+          .then(events => {
+            const filtered = events.filter(e => e.id.toLowerCase() === hostId.toLowerCase());
+            if (filtered.length) {
+              modalEvents.innerHTML = filtered.map(e => `
+                <li>
+                  <strong>${e.event}</strong><br>
+                  ${e.date} ${e.time}<br>
+                  vs ${e.opponent}
+                </li>
+              `).join("");
+            } else {
+              modalEvents.innerHTML = "<li>No PK events found</li>";
+            }
+          })
+          .catch(err => {
+            console.error("Error loading events:", err);
+            modalEvents.innerHTML = "<li>Failed to load events</li>";
+          });
       });
-    })
-    .catch(err => {
-      console.error("Error loading hosts:", err);
-      carousel.innerHTML = "<p>Unable to load hosts.</p>";
-    });
 
-  // 🔹 Close modal
-  closeModal.addEventListener("click", () => {
-    modal.style.display = "none";
+      carousel.appendChild(card);
+    });
+  })
+  .catch(err => {
+    console.error("❌ Error loading hosts:", err);
+    carousel.innerHTML = "<p>Unable to load hosts.</p>";
   });
-  window.addEventListener("click", e => {
-    if (e.target === modal) modal.style.display = "none";
-  });
-  </script>
+
+// 🔹 Close modal
+closeModal.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+window.addEventListener("click", e => {
+  if (e.target === modal) modal.style.display = "none";
+});
+</script>
 
 
 
@@ -190,7 +195,6 @@ if (youtubeLink) {
   </script>
 </body>
 </html>
-
 
 
 
