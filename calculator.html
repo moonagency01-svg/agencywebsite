@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salary Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="My Logo">
+      <span class="company-name">Moon Agency</span>
+    </div>
+
+    <!-- Language Selector -->
+    <div class="lang-select">
+      <select>
+        <option value="en">English</option>
+        <option value="tl">Tagalog</option>
+      </select>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    <nav id="navbar">
+       <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="host.html">Host</a></li>
+        <li><a href="pk-event.html">PK Event</a></li>
+        <li><a href="calculator.html">Calculator</a></li>
+        <li><a href="tutorial.html">Tutorial</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="about.html">About</a></li>
+      
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="calculator">
+      <h3>Policy 7 Salary Calculator</h3>
+      <p>Enter your monthly performance:</p>  <label>Total Beans Acquired:</label><br>
+  <input type="number" id="beans" placeholder="e.g. 150000"><br>
+
+  <label>Total Live Days:</label><br>
+  <input type="number" id="days" placeholder="e.g. 15"><br>
+
+  <label>Total Live Hours:</label><br>
+  <input type="number" id="hours" placeholder="e.g. 40"><br>
+
+  <button onclick="calculateSalary()">Calculate Salary</button>
+
+  <div id="result"></div>
+</div>
+
+    </main>  <script>
+    function calculateSalary() {
+      const beans = parseFloat(document.getElementById('beans').value);
+      const days = parseFloat(document.getElementById('days').value);
+      const hours = parseFloat(document.getElementById('hours').value);
+      const resultDiv = document.getElementById('result');
+
+      if (isNaN(beans) || isNaN(days)||  isNaN(hours)) {
+        resultDiv.innerHTML = "Please fill in all fields.";
+        return;
+      }
+
+      // Salary Table
+      const salaryTable = [
+        { beans: 4000, salary: 22 },
+        { beans: 6000, salary: 33 },
+        { beans: 10000, salary: 52 },
+        { beans: 15000, salary: 75 },
+        { beans: 20000, salary: 98 },
+        { beans: 30000, salary: 145 },
+        { beans: 60000, salary: 280 },
+        { beans: 90000, salary: 385 },
+        { beans: 150000, salary: 740 },
+        { beans: 220000, salary: 1050 },
+        { beans: 330000, salary: 1400 },
+        { beans: 500000, salary: 2200 },
+        { beans: 800000, salary: 3000 },
+        { beans: 1000000, salary: 3300 },
+        { beans: 1500000, salary: 5000 },
+        { beans: 2000000, salary: 6300 },
+        { beans: 2500000, salary: 8000 },
+        { beans: 3000000, salary: 10000 },
+      ];
+
+      // Find salary tier
+      let baseSalary = 0;
+      for (let i = 0; i < salaryTable.length; i++) {
+        if (beans >= salaryTable[i].beans) {
+          baseSalary = salaryTable[i].salary;
+        } else {
+          break;
+        }
+      }
+
+      if (baseSalary === 0) {
+        resultDiv.innerHTML = "You need at least 4,000 beans to qualify.";
+        return;
+      }
+
+      // Determine minimum requirements
+      const minDays = 15;
+      const minHours = beans >= 150000 ? 30 : 40;
+
+      // Compute ratio
+      const dayRatio = Math.min(days / minDays, 1);
+      const hourRatio = Math.min(hours / minHours, 1);
+      const ratio = Math.min(dayRatio, hourRatio);
+
+      const finalSalary = baseSalary * ratio;
+      const displaySalary = finalSalary.toFixed(2);
+
+      let note = "";
+      if (ratio < 1) {
+        note = "<br><small>(Reduced due to missing live days or hours)</small>";
+      }resultDiv.innerHTML = `
+        <p><strong>Estimated Salary: $${displaySalary}</strong>${note}</p>
+        <p>Base Salary Tier: $${baseSalary} for ${beans.toLocaleString()} beans</p>
+        <p>Days Ratio: ${(dayRatio*100).toFixed(1)}% | Hours Ratio: ${(hourRatio*100).toFixed(1)}%</p>
+      `;
+    }
+  </script>
+
+
+  <!-- Footer -->
+<footer class="footer-contact">
+  <p>Contact Us:
+    <br>
+    📧 Manager:<a href="mailto:MoonAgency01@gmail.com">MoonAgency01@gmail.com</a> 
+
+<br>
+    🤝 Co-Manager Eka: <a href="mailto:Iricabryan@gmail.com">Iricabryan@gmail.com</a></p>
+  <p>&copy; 2025 Moon Agency</p>
+</footer>
+
+  <!-- JS for Menu Toggle -->
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const navbar = document.getElementById("navbar");
+
+    toggle.addEventListener("click", () => {
+      navbar.classList.toggle("active");
+    });
+  </script>
+</body>
+</html>
