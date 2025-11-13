@@ -372,3 +372,27 @@ footer {
   line-height: 1.6;
   color: #f5f5f5;
 }
+
+
+.download-bigo {
+  text-align: center;
+  margin: 15px 0 25px;
+  color: yellow;
+}
+
+.download-btn {
+  display: inline-block;
+  background: #00264d;
+  color: yellow;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+  border: 2px solid yellow;
+}
+
+.download-btn:hover {
+  background: yellow;
+  color: #00264d;
+}
