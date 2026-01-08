@@ -396,3 +396,32 @@ footer {
   background: yellow;
   color: #00264d;
 }
+
+  .creator-container {
+    max-width: 900px;
+    margin: auto;
+  }
+
+  /* Step boxes */
+  .step-box {
+    background: #111;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px #222;
+  }
+
+  label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input, select {
+    padding: 10px;
+    width: 10%;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 10px;
+  }
+
