@@ -1,83 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Moon Agency</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">
-      <img src="images/logo.png" alt="My Logo">
-      <span class="company-name">Moon Agency</span>
-    </div>
 
-    <!-- Language Selector -->
-    <div class="lang-select">
-      <select>
+  <header>
+    <div class="brand">
+      <img src="images/logo.png" alt="Moon Agency logo">
+      <span>Moon Agency</span>
+    </div>
+    <div class="header-right">
+      <select class="lang">
         <option value="en">English</option>
         <option value="tl">Tagalog</option>
       </select>
+      <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-
-    <!-- Hamburger Menu -->
-    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-    <nav id="navbar">
-       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="host.html">Host</a></li>
-        <li><a href="pk-event.html">PK Event</a></li>
-        <li><a href="calculator.html">Calculator</a></li>
-        <li><a href="tutorial.html">Tutorial</a></li>
-        <li><a href="game.html">Game</a></li>
-        <li><a href="about.html">About</a></li>
-      
-      </ul>
-    </nav>
   </header>
 
-  <!-- Main Content -->
-    <main>
-   <section>
-  <h2>About Us</h2>
-  <p>We are a professional livestreaming agency dedicated to helping aspiring content creators grow and succeed on <strong>Bigo Live</strong>. Our mission is to guide, support, and empower individuals who want to showcase their talents, connect with audiences, and earn through livestreaming.</p>
+  <nav class="site-nav" id="siteNav">
+    <a href="index.html" class="active"><span class="ico">🏠</span><span data-i18n="nav.home">Home</span></a>
+    <a href="host.html"><span class="ico">👤</span><span data-i18n="nav.host">Host</span></a>
+    <a href="apply.html"><span class="ico">✍️</span><span data-i18n="nav.apply">Apply</span></a>
+    <a href="pk-event.html"><span class="ico">⚔️</span><span data-i18n="nav.pkevent">PK Event</span></a>
+    <a href="calculator.html"><span class="ico">🧮</span><span data-i18n="nav.calculator">Calculator</span></a>
+    <a href="tutorial.html"><span class="ico">📘</span><span data-i18n="nav.tutorial">Tutorial</span></a>
+    <a href="game.html"><span class="ico">🎮</span><span data-i18n="nav.game">Game</span></a>
+    <a href="ask-luna.html"><span class="ico">🐾</span><span data-i18n="nav.askluna">Ask Luna</span></a>
+    <a href="about.html"><span class="ico">ℹ️</span><span data-i18n="nav.about">About</span></a>
+  </nav>
 
-  <p>As an official agency, we provide our hosts with:</p>
-  <ul>
+  <main>
+    <section class="about-section">
+      <h2>About Us</h2>
+      <p>We are a professional livestreaming agency dedicated to helping aspiring content creators grow and succeed on <strong>Bigo Live</strong>. Our mission is to guide, support, and empower individuals who want to showcase their talents, connect with audiences, and earn through livestreaming.</p>
 
-    <li>✅ Growth strategies to increase followers and engagement</li>
-    <li>✅ Technical support and guidance</li>
-    <li>✅ Opportunities to earn while doing what they love</li>
-  </ul>
+      <p>As an official agency, we provide our hosts with:</p>
+      <ul class="about-list">
+        <li>✅ Growth strategies to increase followers and engagement</li>
+        <li>✅ Technical support and guidance</li>
+        <li>✅ Opportunities to earn while doing what they love</li>
+      </ul>
 
-  <p>We are always looking for passionate and talented individuals who want to become livestreaming hosts. Whether you’re new to livestreaming or already experienced, we will help you build your career on Bigo Live.</p>
+      <p>We are always looking for passionate and talented individuals who want to become livestreaming hosts. Whether you're new to livestreaming or already experienced, we will help you build your career on Bigo Live.</p>
 
-  <p>Join us today and start your journey as a livestreaming host!</p>
-</section>
+      <div class="about-cta">
+        <p>Join us today and start your journey as a livestreaming host!</p>
+        <a href="https://livestream.onelink.me/ZYcM/IricaAmante" target="_blank" class="download-btn">
+          📲 Download Bigo Live
+        </a>
+      </div>
+    </section>
   </main>
 
-  <!-- Footer -->
-<footer class="footer-contact">
-  <p>Contact Us:
-    <br>
-    📧 Manager:<a href="mailto:MoonAgency01@gmail.com">MoonAgency01@gmail.com</a> 
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="Moon Agency logo">
+          <span>Moon Agency</span>
+        </div>
+        <p data-i18n="footer.tagline">Official BIGO Live PH agency helping hosts grow, earn, and thrive on stream.</p>
+      </div>
 
-<br>
-    🤝 Co-Manager Eka: <a href="mailto:Iricabryan@gmail.com">Iricabryan@gmail.com</a></p>
-  <p>&copy; 2025 Moon Agency</p>
-</footer>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="host.html" data-i18n="nav.host">Host</a>
+        <a href="pk-event.html" data-i18n="nav.pkevent">PK Event</a>
+        <a href="calculator.html" data-i18n="nav.calculator">Calculator</a>
+        <a href="tutorial.html" data-i18n="nav.tutorial">Tutorial</a>
+        <a href="game.html" data-i18n="nav.game">Game</a>
+        <a href="ask-luna.html" data-i18n="nav.askluna">Ask Luna</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+      </div>
 
-  <!-- JS for Menu Toggle -->
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📧 Manager<br><a href="mailto:MoonAgency01@gmail.com">MoonAgency01@gmail.com</a></p>
+        <p>🤝 Co-Manager Eka<br><a href="Iricabryan@gmail.com">Iricabryan@gmail.com</a></p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p data-i18n="footer.copyright">&copy; 2025 Moon Agency. All rights reserved. Hosts must be 18 years or older to apply.</p>
+      <div class="footer-legal-links">
+        <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="terms-of-service.html" data-i18n="footer.terms">Terms of Service</a>
+        <a href="cookie-policy.html" data-i18n="footer.cookies">Cookie Policy</a>
+        <button id="manageCookiesBtn" type="button" data-i18n="footer.manageCookies">Manage Cookie Preferences</button>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    const toggle = document.getElementById("menu-toggle");
-    const navbar = document.getElementById("navbar");
-
-    toggle.addEventListener("click", () => {
-      navbar.classList.toggle("active");
+    const burgerBtn = document.getElementById('burgerBtn');
+    const siteNav = document.getElementById('siteNav');
+    burgerBtn.addEventListener('click', () => {
+      const isOpen = siteNav.classList.toggle('open');
+      burgerBtn.classList.toggle('open', isOpen);
+      burgerBtn.setAttribute('aria-expanded', isOpen);
     });
   </script>
+
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-inner">
+      <p data-i18n-html="cookieBanner.text">We use cookies for essential site function and, where you consent, for embedded YouTube videos that may set their own cookies. See our <a href="cookie-policy.html">Cookie Policy</a> for details.</p>
+      <div class="cookie-actions">
+        <button id="cookieReject" type="button" data-i18n="cookieBanner.reject">Reject non-essential</button>
+        <button id="cookieAccept" type="button" data-i18n="cookieBanner.accept">Accept all</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      function getCookie(name){
+        const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return match ? decodeURIComponent(match[1]) : null;
+      }
+      function setCookie(name, value, days){
+        const d = new Date();
+        d.setTime(d.getTime() + days*24*60*60*1000);
+        document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
+      }
+      const banner = document.getElementById('cookieBanner');
+      const acceptBtn = document.getElementById('cookieAccept');
+      const rejectBtn = document.getElementById('cookieReject');
+      const manageBtn = document.getElementById('manageCookiesBtn');
+
+      function showBanner(){ if (banner) banner.classList.add('show'); }
+      function hideBanner(){ if (banner) banner.classList.remove('show'); }
+
+      if (!getCookie('cookie_consent')) {
+        showBanner();
+      }
+
+      if (acceptBtn) acceptBtn.addEventListener('click', function(){
+        setCookie('cookie_consent', 'accepted', 365);
+        hideBanner();
+      });
+      if (rejectBtn) rejectBtn.addEventListener('click', function(){
+        setCookie('cookie_consent', 'rejected', 365);
+        hideBanner();
+      });
+      if (manageBtn) manageBtn.addEventListener('click', showBanner);
+    })();
+  </script>
+
+  <script src="i18n.js"></script>
+
 </body>
-</html>
 </html>
