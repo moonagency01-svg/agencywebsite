@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ask Luna — Moon Agency</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <img src="images/logo.png" alt="Moon Agency logo">
+      <span>Moon Agency</span>
+    </div>
+    <div class="header-right">
+      <select class="lang">
+        <option value="en">English</option>
+        <option value="tl">Tagalog</option>
+      </select>
+      <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="site-nav" id="siteNav">
+    <a href="index.html"><span class="ico">🏠</span><span data-i18n="nav.home">Home</span></a>
+    <a href="host.html"><span class="ico">👤</span><span data-i18n="nav.host">Host</span></a>
+    <a href="apply.html"><span class="ico">✍️</span><span data-i18n="nav.apply">Apply</span></a>
+    <a href="pk-event.html"><span class="ico">⚔️</span><span data-i18n="nav.pkevent">PK Event</span></a>
+    <a href="calculator.html"><span class="ico">🧮</span><span data-i18n="nav.calculator">Calculator</span></a>
+    <a href="tutorial.html"><span class="ico">📘</span><span data-i18n="nav.tutorial">Tutorial</span></a>
+    <a href="game.html"><span class="ico">🎮</span><span data-i18n="nav.game">Game</span></a>
+    <a href="ask-luna.html" class="active"><span class="ico">🐾</span><span data-i18n="nav.askluna">Ask Luna</span></a>
+    <a href="about.html"><span class="ico">ℹ️</span><span data-i18n="nav.about">About</span></a>
+  </nav>
+
+  <main>
+    <section class="luna-page">
+      <div class="luna-intro">
+        <img src="images/luna_chibi.jpg" alt="Luna, Moon Agency mascot" class="luna-avatar">
+        <div>
+          <h2>Ask Luna</h2>
+          <div class="luna-status"><span class="dot"></span> <span data-i18n="luna.status">Available 24/7 — answers BIGO Live &amp; agency questions</span></div>
+        </div>
+      </div>
+
+      <div class="chat-window" id="chatWindow"></div>
+
+      <div class="quick-chips" id="quickChips">
+        <button type="button" data-query="join" data-i18n="luna.chip1">How do I join as a host?</button>
+        <button type="button" data-query="beans" data-i18n="luna.chip2">What are beans and diamonds?</button>
+        <button type="button" data-query="pk" data-i18n="luna.chip3">What's a PK battle?</button>
+        <button type="button" data-query="noviewers" data-i18n="luna.chip4">No one is watching my stream</button>
+        <button type="button" data-query="contact" data-i18n="luna.chip5">How do I contact a manager?</button>
+      </div>
+
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="Ask about BIGO Live, hosting, PK events..." data-i18n-placeholder="luna.inputPlaceholder">
+        <button id="chatSendBtn" type="button" aria-label="Send">➤</button>
+      </div>
+
+      <p class="luna-disclaimer" data-i18n-html="luna.disclaimer">
+        Luna answers from a fixed set of Moon Agency &amp; BIGO Live topics — she's not a live person and won't always have what you need.
+        For anything else, email our <a href="mailto:MoonAgency01@gmail.com">Manager</a> or
+        <a href="mailto:Iricabryan@gmail.com">Co-Manager Eka</a>.
+      </p>
+    </section>
+  </main>
+
+  <!--
+    Note for future editing: the quick-reply chips carry a data-query attribute
+    (e.g. data-query="join"). This is the canonical topic key used for keyword
+    matching, completely separate from the translated label shown on the button.
+    This means switching language never breaks which knowledge-base answer a
+    chip triggers.
+  -->
+
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="Moon Agency logo">
+          <span>Moon Agency</span>
+        </div>
+        <p data-i18n="footer.tagline">Official BIGO Live PH agency helping hosts grow, earn, and thrive on stream.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="host.html" data-i18n="nav.host">Host</a>
+        <a href="apply.html" data-i18n="nav.apply">Apply</a>
+        <a href="pk-event.html" data-i18n="nav.pkevent">PK Event</a>
+        <a href="calculator.html" data-i18n="nav.calculator">Calculator</a>
+        <a href="tutorial.html" data-i18n="nav.tutorial">Tutorial</a>
+        <a href="game.html" data-i18n="nav.game">Game</a>
+        <a href="ask-luna.html" data-i18n="nav.askluna">Ask Luna</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📧 Manager<br><a href="mailto:MoonAgency01@gmail.com">MoonAgency01@gmail.com</a></p>
+        <p>🤝 Co-Manager Eka<br><a href="Iricabryan@gmail.com">Iricabryan@gmail.com</a></p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p data-i18n="footer.copyright">&copy; 2025 Moon Agency. All rights reserved. Hosts must be 18 years or older to apply.</p>
+      <div class="footer-legal-links">
+        <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="terms-of-service.html" data-i18n="footer.terms">Terms of Service</a>
+        <a href="cookie-policy.html" data-i18n="footer.cookies">Cookie Policy</a>
+        <button id="manageCookiesBtn" type="button" data-i18n="footer.manageCookies">Manage Cookie Preferences</button>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const burgerBtn = document.getElementById('burgerBtn');
+    const siteNav = document.getElementById('siteNav');
+    burgerBtn.addEventListener('click', () => {
+      const isOpen = siteNav.classList.toggle('open');
+      burgerBtn.classList.toggle('open', isOpen);
+      burgerBtn.setAttribute('aria-expanded', isOpen);
+    });
+  </script>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-inner">
+      <p data-i18n-html="cookieBanner.text">We use cookies for essential site function and, where you consent, for embedded YouTube videos that may set their own cookies. See our <a href="cookie-policy.html">Cookie Policy</a> for details.</p>
+      <div class="cookie-actions">
+        <button id="cookieReject" type="button" data-i18n="cookieBanner.reject">Reject non-essential</button>
+        <button id="cookieAccept" type="button" data-i18n="cookieBanner.accept">Accept all</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      function getCookie(name){
+        const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return match ? decodeURIComponent(match[1]) : null;
+      }
+      function setCookie(name, value, days){
+        const d = new Date();
+        d.setTime(d.getTime() + days*24*60*60*1000);
+        document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
+      }
+      const banner = document.getElementById('cookieBanner');
+      const acceptBtn = document.getElementById('cookieAccept');
+      const rejectBtn = document.getElementById('cookieReject');
+      const manageBtn = document.getElementById('manageCookiesBtn');
+
+      function showBanner(){ if (banner) banner.classList.add('show'); }
+      function hideBanner(){ if (banner) banner.classList.remove('show'); }
+
+      if (!getCookie('cookie_consent')) {
+        showBanner();
+      }
+
+      if (acceptBtn) acceptBtn.addEventListener('click', function(){
+        setCookie('cookie_consent', 'accepted', 365);
+        window.dispatchEvent(new Event('cookie-consent-accepted'));
+        hideBanner();
+      });
+      if (rejectBtn) rejectBtn.addEventListener('click', function(){
+        setCookie('cookie_consent', 'rejected', 365);
+        hideBanner();
+      });
+      if (manageBtn) manageBtn.addEventListener('click', showBanner);
+    })();
+  </script>
+
+  <!-- Luna knowledge-base chat -->
+  <script>
+    const chatWindow = document.getElementById('chatWindow');
+    const chatInput = document.getElementById('chatInput');
+    const chatSendBtn = document.getElementById('chatSendBtn');
+    const quickChips = document.getElementById('quickChips');
+    const AVATAR = "images/luna_chibi.jpg";
+
+    function getCurrentLang(){
+      const lang = getCookie('site_lang');
+      return lang === 'tl' ? 'tl' : 'en';
+    }
+
+    // Knowledge base: each entry has an id (used by quick-reply chips so
+    // translation never breaks routing), bilingual keywords for free-text
+    // matching in either language, and a bilingual answer.
+    const knowledgeBase = [
+      {
+        id: "join",
+        keywords: ["join", "become a host", "how do i start", "sign up", "apply", "recruit",
+                   "paano sumali", "paano mag apply", "gusto ko maging host", "paano maging host"],
+        answer: {
+          en: "To become a host, you apply through the BIGO Live app and get linked to our agency code <strong>PH-MOON2</strong>. Check our <a href='host.html'>Host page</a> for details, and make sure you're 18 or older — that's BIGO's minimum age requirement.",
+          tl: "Para maging host, mag-apply ka sa BIGO Live app at i-link sa agency code namin na <strong>PH-MOON2</strong>. Check mo yung <a href='host.html'>Host page</a> namin for details, and dapat 18 years old ka pataas — yun yung minimum age requirement ng BIGO."
+        }
+      },
+      {
+        id: "age",
+        keywords: ["age", "18", "old enough", "minor", "young", "edad", "menor de edad", "bata pa"],
+        answer: {
+          en: "You need to be 18 years or older to apply as a host with Moon Agency, in line with BIGO Live's own platform rules.",
+          tl: "Kailangan mo ng 18 years old pataas para mag-apply as host sa Moon Agency, sunod sa rules ng BIGO Live mismo."
+        }
+      },
+      {
+        id: "beans",
+        keywords: ["bean", "diamond", "currency", "coins", "gift value", "beans", "pera sa app"],
+        answer: {
+          en: "Beans are what hosts earn from viewer gifts during a stream — they're BIGO Live's in-app currency for hosts. Diamonds are what viewers purchase to send those gifts. Your monthly beans total is what feeds into our salary calculator.",
+          tl: "Yung Beans yung natatanggap mo as host galing sa gifts ng viewers mo habang nag-lstream ka — parang in-app currency para sa mga host. Yung Diamonds naman binibili ng viewers para makapag-send ng gifts. Yung total beans mo monthly yung ginagamit namin sa salary calculator."
+        }
+      },
+      {
+        id: "salary",
+        keywords: ["salary", "earn", "payout", "how much", "money", "income", "sahod", "sweldo", "magkano kikitain"],
+        answer: {
+          en: "Earnings depend on your beans, live days, and live hours each month under Policy 7 or 8. Try our <a href='calculator.html'>Salary Calculator</a> for an estimate — just remember it's an estimate, not a guarantee.",
+          tl: "Depende yung kikitain mo sa beans, live days, at live hours mo per month, base sa Policy 7 or 8. Try mo yung <a href='calculator.html'>Salary Calculator</a> namin para sa estimate — pero tandaan, estimate lang yan, hindi guaranteed."
+        }
+      },
+      {
+        id: "pk",
+        keywords: ["pk", "battle", "versus", "opponent", "kalaban", "laban"],
+        answer: {
+          en: "A PK Battle is a live 1-on-1 (or team) match between hosts, where viewers send gifts to help their favorite win within a set time. Check our <a href='pk-event.html'>PK Events page</a> for the current schedule.",
+          tl: "Yung PK Battle ay live 1-on-1 (o team) match between hosts, kung saan nagpapadala ng gifts yung viewers para panalo yung paborito nila within a set time. Check mo yung <a href='pk-event.html'>PK Events page</a> namin for current schedule."
+        }
+      },
+      {
+        id: "noviewers",
+        keywords: ["no viewer", "no one watching", "nobody watching", "zero viewer", "empty stream",
+                   "quiet stream", "discouraged", "give up", "walang manonood", "wala akong viewer", "wala pang viewer"],
+        answer: {
+          en: "Every host starts with an empty room — even the biggest ones did. Keep your schedule consistent, greet whoever's there like they're a full audience, and it builds over time. You're not doing anything wrong by starting quiet. 💛",
+          tl: "Lahat ng host nagsimula sa walang laman na room — pati yung mga malaki ngayon. Panatilihin lang consistent yung schedule mo, batiin mo kahit isa lang parang buong room siya, unti-unti darating din yan. Wala kang ginagawang mali kung tahimik pa simula. 💛"
+        }
+      },
+      {
+        id: "grow",
+        keywords: ["grow", "followers", "more viewers", "get noticed", "algorithm", "views", "sumikat", "dumami manonood"],
+        answer: {
+          en: "Consistency is the biggest lever — same days/times each week. Beyond that, a strong opening hook in your first 10 seconds and interacting with chat by name both help a lot. Our <a href='tutorial.html'>Tutorial page</a> covers this in more depth.",
+          tl: "Yung consistency yung pinaka-importante — same days/times every week. Dagdag pa dun, malakas na hook sa first 10 seconds mo at pag-interact sa chat by name malaking tulong din. Check mo yung <a href='tutorial.html'>Tutorial page</a> namin for more tips."
+        }
+      },
+      {
+        id: "download",
+        keywords: ["download", "install", "app", "get bigo", "i-download"],
+        answer: {
+          en: "You can download BIGO Live for Android or iOS. Check the download link on our <a href='host.html'>Host page</a>.",
+          tl: "Pwede mong i-download yung BIGO Live sa Android o iOS. Check mo yung download link sa <a href='host.html'>Host page</a> namin."
+        }
+      },
+      {
+        id: "verify",
+        keywords: ["verify", "verification", "broadcaster verification", "verified badge", "i-verify"],
+        answer: {
+          en: "Broadcaster verification is a one-time process in the BIGO Live app confirming your identity as a host. Our <a href='tutorial.html'>Tutorial page</a> has a walkthrough video for this.",
+          tl: "Yung broadcaster verification ay one-time process sa BIGO Live app para i-confirm yung identity mo as host. May walkthrough video kami dito sa <a href='tutorial.html'>Tutorial page</a> namin."
+        }
+      },
+      {
+        id: "gifts",
+        keywords: ["gift", "send gift", "receive gift", "how do gifts work", "regalo"],
+        answer: {
+          en: "Viewers buy diamonds and use them to send gifts during your stream. Gifts convert into beans for you, which is what your monthly earnings are based on.",
+          tl: "Bumibili ng diamonds yung viewers para makapag-send ng gifts habang nag-lstream ka. Ma-cconvert yung gifts into beans para sa'yo, at yun yung basehan ng monthly earnings mo."
+        }
+      },
+      {
+        id: "schedule",
+        keywords: ["schedule", "how often", "minimum hours", "minimum days", "requirement", "ilang oras", "ilang araw"],
+        answer: {
+          en: "Policy 7 and Policy 8 each have their own minimum live-days and live-hours thresholds per month to hit full payout — see the <a href='calculator.html'>Salary Calculator</a> for the specifics based on your policy.",
+          tl: "May sariling minimum live-days at live-hours per month yung Policy 7 at Policy 8 para makuha yung full payout — check mo yung <a href='calculator.html'>Salary Calculator</a> namin for specifics base sa policy mo."
+        }
+      },
+      {
+        id: "contact",
+        keywords: ["manager", "contact", "human", "real person", "talk to someone", "email", "kausapin", "makipag-usap"],
+        answer: {
+          en: "You can reach our Manager at <a href='mailto:MoonAgency01@gmail.com'>MoonAgency01@gmail.com</a> or Co-Manager Eka at <a href='mailto:Iricabryan@gmail.com'>Iricabryan@gmail.com</a>. I answer common questions instantly, but anything account-specific goes to them.",
+          tl: "Pwede mo kontakin yung Manager namin sa <a href='mailto:MoonAgency01@gmail.com</a> o si Co-Manager Eka sa <a href='mailto:Iricabryan@gmail.com</a>. Sinasagot ko agad yung common questions, pero yung account-specific na bagay dapat sa kanila na."
+        }
+      },
+      {
+        id: "copyright",
+        keywords: ["copyright", "music", "song", "dmca", "content id", "kanta"],
+        answer: {
+          en: "Playing copyrighted music during your stream can trigger takedowns or muting from BIGO's content system. Safer to use royalty-free tracks or BIGO's own in-app sounds where available.",
+          tl: "Kapag nagpatugtog ka ng copyrighted na music habang nag-lstream ka, baka ma-mute o ma-takedown ka ng content system ng BIGO. Mas safe gumamit ng royalty-free tracks o yung in-app sounds mismo ng BIGO."
+        }
+      },
+      {
+        id: "technical",
+        keywords: ["mic", "camera", "audio", "not working", "technical", "lag", "connection", "sira", "hindi gumagana"],
+        answer: {
+          en: "For most stream tech issues: check your app is updated, close background apps hogging bandwidth, and test your mic/camera permissions in your phone's settings first. If it persists, reach out to a manager directly.",
+          tl: "Para sa karamihan ng technical issues: siguraduhing updated yung app mo, isara yung mga background apps na kumakain ng bandwidth, at i-check yung mic/camera permissions sa settings ng phone mo. Kung tuloy-tuloy pa rin, direkta na lang mag-message sa manager."
+        }
+      },
+      {
+        id: "policy",
+        keywords: ["policy 7", "policy 8", "which policy", "anong policy"],
+        answer: {
+          en: "Policy 7 and 8 are different payout structures — they differ in bean thresholds and minimum hours required. Run your numbers under both in the <a href='calculator.html'>Calculator</a> to see which suits you better.",
+          tl: "Iba't ibang payout structures yung Policy 7 at 8 — magkaiba sila sa bean thresholds at minimum hours na kailangan. I-try mo yung numbers mo sa dalawa gamit yung <a href='calculator.html'>Calculator</a> para makita kung alin mas bagay sa'yo."
+        }
+      },
+      {
+        id: "game",
+        keywords: ["game", "mini game", "play", "laro"],
+        answer: {
+          en: "We've got a browser mini-game and a couple of Android games on our <a href='game.html'>Game page</a> if you want to take a break between streams!",
+          tl: "May browser mini-game kami at ilang Android games sa <a href='game.html'>Game page</a> namin kung gusto mo mag-break between streams!"
+        }
+      },
+      {
+        id: "greeting",
+        keywords: ["hi", "hello", "hey", "good morning", "good evening", "kumusta", "musta"],
+        answer: {
+          en: "Hi! I'm Luna 🐾 Ask me anything about BIGO Live hosting, PK events, beans, or Moon Agency — or tap one of the quick questions below.",
+          tl: "Hi! Ako si Luna 🐾 Tanong mo lang sakin kahit ano about BIGO Live hosting, PK events, beans, o Moon Agency — o pindutin mo na lang isa sa quick questions sa baba."
+        }
+      },
+      {
+        id: "thanks",
+        keywords: ["thank", "thanks", "appreciate", "salamat"],
+        answer: {
+          en: "Anytime! Good luck out there — you've got this. 💛",
+          tl: "Walang anuman! Good luck jan, kaya mo yan. 💛"
+        }
+      },
+      {
+        id: "livemodes",
+        keywords: ["multi live", "solo live", "audio live", "game live", "live mode", "types of live",
+                    "ano ang multi live", "paano mag solo live", "uri ng live"],
+        answer: {
+          en: "BIGO has 4 live modes: <strong>Multi Live</strong> (you host, others join as guests in 4/6/9/12 seats — only your time as host counts), <strong>Solo Live</strong> (stream alone or with up to 2 guests, time counts), <strong>Audio Live</strong> (audio only — this time does NOT count toward your live data), and <strong>Game Live</strong> (broadcast your mobile gameplay — be careful not to show sensitive info on screen).",
+          tl: "May 4 live modes sa BIGO: <strong>Multi Live</strong> (ikaw yung host, may guests sa 4/6/9/12 seats — yung oras mo lang as host ang counted), <strong>Solo Live</strong> (mag-isa ka o may up to 2 guests, counted yung oras), <strong>Audio Live</strong> (audio lang — hindi ito counted sa live data mo), at <strong>Game Live</strong> (i-broadcast yung mobile game mo — mag-ingat lang na walang sensitive info na lumabas sa screen)."
+        }
+      },
+      {
+        id: "startlive",
+        keywords: ["how to go live", "start live", "start streaming", "cover photo", "how to start hosting",
+                    "paano mag live", "paano magsimula ng live", "paano mag stream"],
+        answer: {
+          en: "Tap the camera icon in the middle of the screen, select Live, choose a cover photo (avoid explicit/provocative images since some viewers are under 18), add a title and hashtag, then tap Go Live. You'll get a 3-2-1 countdown before you're live. Swipe down anytime while live to check your stats.",
+          tl: "I-tap yung camera icon sa gitna ng screen, piliin yung Live, mamili ng cover photo (iwasan yung explicit o provocative kasi may viewers na under 18), lagyan ng title at hashtag, then i-tap yung Go Live. May 3-2-1 countdown bago ka mag-live. Pwede mo i-swipe down anytime habang live ka para makita yung stats mo."
+        }
+      },
+      {
+        id: "livetools",
+        keywords: ["beauty filter", "fill light", "flip camera", "magic icon", "creator center", "live tools",
+                    "paano gamitin yung filter", "creator center"],
+        answer: {
+          en: "While live, tap the expand button at the bottom for more tools: flip camera, beauty filter, fill light (brightens using your screen), event (upcoming BIGO events), magic (masks/background), and Creator Center (your live hours, live days, beans, and stats).",
+          tl: "Habang live ka, i-tap yung expand button sa baba para sa more tools: flip camera, beauty filter, fill light (nagpapaliwanag gamit yung screen mo), event (upcoming BIGO events), magic (masks/background), at Creator Center (yung live hours, live days, beans, at stats mo)."
+        }
+      },
+      {
+        id: "pkinvite",
+        keywords: ["invite pk", "pk duration", "1v1 pk", "how to pk", "pk gear icon", "follow for pk",
+                    "paano mag invite ng pk", "paano mag pk"],
+        answer: {
+          en: "Both of you need to follow each other first. Tap the PK icon → 1v1 PK → check the gear icon for match duration (default is 5 minutes, but official PK events should be set to 15 minutes) → go to your friends list, pick your opponent, and send the invite. Tip: if you can't find them, unfollow and re-follow to bump them to the top of your recent list.",
+          tl: "Kailangan mag-follow muna kayong dalawa sa isa't isa. I-tap yung PK icon → 1v1 PK → i-check yung gear icon para sa match duration (default 5 minutes, pero para sa official PK events dapat 15 minutes) → punta sa friends list mo, piliin yung kalaban, at i-send yung invite. Tip: kung di mo mahanap, i-unfollow tapos i-follow ulit para pumunta sila sa taas ng recent list mo."
+        }
+      },
+      {
+        id: "profile",
+        keywords: ["bigo id change", "change bigo name", "profile photo", "edit profile", "family tag",
+                    "paano palitan yung bigo id", "paano magpalit ng pangalan"],
+        answer: {
+          en: "Go to Me → tap the profile icon → tap edit. You can upload up to 5 photos. Your BIGO ID can only be changed once, so choose carefully — and your BIGO name can be updated anytime. If you're joining a family, put their family tag at the start of your name (e.g. fam_John).",
+          tl: "Pumunta sa Me → i-tap yung profile icon → i-tap yung edit. Pwede kang mag-upload ng up to 5 photos. Yung BIGO ID mo minsan lang mapapalitan, kaya mag-ingat sa pagpili — pero yung BIGO name mo pwede anytime i-update. Kung sasali ka sa family, ilagay yung family tag nila sa umpisa ng name mo (hal. fam_John)."
+        }
+      },
+      {
+        id: "family",
+        keywords: ["join a family", "bigo family", "family leader", "why join family",
+                    "paano sumali sa family", "family sa bigo"],
+        answer: {
+          en: "Joining a family is a great way to meet other hosts, make friends, and learn from experienced streamers — each family has its own group chat. To join: add the family tag to your name first, then open a member's profile → Family section → tap Join, and wait for a family admin to approve.",
+          tl: "Ang pagsali sa family ay magandang paraan para makakilala ng ibang hosts, makagawa ng friends, at matuto sa mga experienced streamers — may sariling group chat ang bawat family. Para sumali: ilagay muna yung family tag sa name mo, tapos buksan yung profile ng isang member → Family section → i-tap yung Join, at hintayin ma-approve ng family admin."
+        }
+      },
+      {
+        id: "scam",
+        keywords: ["scam", "fake manager", "impersonator", "pretending to be manager", "someone offering money",
+                    "scammer", "peke na manager", "nagpapanggap na manager"],
+        answer: {
+          en: "Never end your live because someone messages promising money or gifts if you do — that's a common scam. Also watch out for fake accounts pretending to be your agency manager. Our real managers only reach out through our official group chats, never from a random BIGO account. If unsure, verify with your actual manager first before doing anything.",
+          tl: "Huwag kailanman tatapusin yung live mo dahil lang may nag-message na mangangako ng pera o gifts — common scam yan. Mag-ingat din sa fake accounts na nagpapanggap na manager ng agency mo. Yung totoong managers namin, sa official group chats lang kami nakikipag-usap, hindi galing sa random na BIGO account. Kung hindi sure, i-verify muna sa totoong manager bago gumawa ng kahit ano."
+        }
+      },
+      {
+        id: "dresscode",
+        keywords: ["dress code", "chest exposure", "what to wear", "clothing rules", "neckline",
+                    "ano pwede isuot", "damit sa live"],
+        answer: {
+          en: "BIGO has strict rules on chest exposure — even unintentionally. Choose higher necklines, avoid deep V-necks or see-through outfits, make sure undergarments aren't visible, and keep your camera at eye level rather than pointed down. When in doubt, cover up more rather than less.",
+          tl: "Mahigpit ang BIGO sa chest exposure — kahit hindi sinasadya. Mas mataas na neckline yung piliin, iwasan yung deep V-neck o see-through na damit, siguraduhing hindi kita yung undergarments, at panatilihin yung camera sa eye level imbes na nakatutok pababa. Kung hindi sure, mas mabuting mag-cover ng higit pa kaysa kulang."
+        }
+      },
+      {
+        id: "violations",
+        keywords: ["banned", "violation", "community guidelines", "prohibited", "what not to do live",
+                    "bawal sa bigo", "ma-ban", "violation sa bigo"],
+        answer: {
+          en: "Common things that can get you penalized: alcohol or gambling on camera, smoking/vaping while live, graphic/violent content, nudity, weapons (even replicas), promoting other platforms, harmful PK punishments, hate speech or harassment, and leaving your stream idle on a black screen. When unsure if something's allowed, ask your manager first or just don't risk it.",
+          tl: "Mga common na dahilan ng penalty: alak o gambling sa camera, paninigarilyo/vaping habang live, graphic o violent na content, nudity, weapons (kahit replica), pag-promote ng ibang platform, mapanganib na PK punishments, hate speech o harassment, at pag-iwan ng stream sa black screen na walang ginagawa. Kung hindi sure kung pwede, tanungin muna yung manager mo o huwag na lang mag-risk."
+        }
+      },
+      {
+        id: "etiquette",
+        keywords: ["etiquette", "how to greet viewers", "how to talk to viewers", "stream manners",
+                    "paano makitungo sa viewers", "manners sa live"],
+        answer: {
+          en: "Good hosting habits: always greet viewers when they join, say thank you for every gift no matter the size, never beg or pressure people to send gifts, stay respectful even with rude viewers (mute/ignore instead of arguing), keep your setup clean (lighting, background, audio), and stream consistently at the same times.",
+          tl: "Mga magandang habit bilang host: laging batiin yung viewers pag pumasok sila, magpasalamat sa bawat gift kahit maliit, huwag mangiling o pumilit magpa-send ng gifts, manatiling respectful kahit may bastos na viewer (i-mute o i-ignore imbes na makipagtalo), panatilihing malinis yung setup (lighting, background, audio), at maging consistent sa oras ng live mo."
+        }
+      }
+    ];
+
+    const fallback = {
+      en: "I don't have an answer for that one yet — I'm scoped to BIGO Live and Moon Agency topics. For anything else, email our <a href='mailto:MoonAgency01@gmail.com'>Manager</a> or <a href='mailto:Iricabryan@gmail.com'>Co-Manager Eka</a>.",
+      tl: "Wala pa akong sagot dyan — BIGO Live at Moon Agency topics lang kasi yung alam ko. Para sa iba, i-email na lang yung <a href='mailto:MoonAgency01@gmail.com'>Manager</a> o <a href='mailto:Iricabryan@gmail.com'>Co-Manager Eka</a> namin."
+    };
+
+    const greeting = {
+      en: "Hi, I'm Luna! 🐾 I'm here anytime our managers can't be — ask me about hosting, beans, PK events, or anything BIGO Live related.",
+      tl: "Hi, ako si Luna! 🐾 Nandito ako anytime na busy yung mga manager namin — tanong mo lang about hosting, beans, PK events, o kahit ano tungkol sa BIGO Live."
+    };
+
+    function findAnswerById(id) {
+      const entry = knowledgeBase.find(e => e.id === id);
+      const lang = getCurrentLang();
+      return entry ? (entry.answer[lang] || entry.answer.en) : (fallback[lang] || fallback.en);
+    }
+
+    function findAnswerByText(text) {
+      const lower = text.toLowerCase();
+      const lang = getCurrentLang();
+      let best = null;
+      let bestScore = 0;
+      knowledgeBase.forEach(entry => {
+        let score = 0;
+        entry.keywords.forEach(k => {
+          if (lower.includes(k)) score++;
+        });
+        if (score > bestScore) {
+          bestScore = score;
+          best = entry;
+        }
+      });
+      return best ? (best.answer[lang] || best.answer.en) : (fallback[lang] || fallback.en);
+    }
+
+    function appendMessage(role, html) {
+      const msg = document.createElement('div');
+      msg.className = 'msg ' + role;
+
+      const avatar = document.createElement('img');
+      avatar.className = 'msg-avatar';
+      avatar.src = role === 'bot' ? AVATAR : '';
+      avatar.alt = role === 'bot' ? 'Luna' : 'You';
+      if (role === 'user') avatar.style.visibility = 'hidden';
+
+      const bubble = document.createElement('div');
+      bubble.className = 'msg-bubble';
+      bubble.innerHTML = html;
+
+      msg.appendChild(avatar);
+      msg.appendChild(bubble);
+      chatWindow.appendChild(msg);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+      return msg;
+    }
+
+    function showTyping() {
+      const msg = document.createElement('div');
+      msg.className = 'msg bot';
+      msg.id = 'typingIndicator';
+
+      const avatar = document.createElement('img');
+      avatar.className = 'msg-avatar';
+      avatar.src = AVATAR;
+      avatar.alt = 'Luna';
+
+      const bubble = document.createElement('div');
+      bubble.className = 'msg-bubble';
+      bubble.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+
+      msg.appendChild(avatar);
+      msg.appendChild(bubble);
+      chatWindow.appendChild(msg);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    function removeTyping() {
+      const el = document.getElementById('typingIndicator');
+      if (el) el.remove();
+    }
+
+    function handleUserMessage(text, topicId) {
+      if (!text.trim()) return;
+      appendMessage('user', text.replace(/</g, "&lt;"));
+      chatInput.value = '';
+      showTyping();
+
+      const delay = 500 + Math.random() * 500;
+      setTimeout(() => {
+        removeTyping();
+        const answer = topicId ? findAnswerById(topicId) : findAnswerByText(text);
+        appendMessage('bot', answer);
+      }, delay);
+    }
+
+    chatSendBtn.addEventListener('click', () => handleUserMessage(chatInput.value));
+    chatInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') handleUserMessage(chatInput.value);
+    });
+    quickChips.addEventListener('click', e => {
+      if (e.target.tagName === 'BUTTON') {
+        handleUserMessage(e.target.textContent, e.target.getAttribute('data-query'));
+      }
+    });
+
+    // Greeting on load, in whichever language is currently active
+    showTyping();
+    setTimeout(() => {
+      removeTyping();
+      const lang = getCurrentLang();
+      appendMessage('bot', greeting[lang] || greeting.en);
+    }, 600);
+  </script>
+
+  <script src="analytics.js"></script>
+  <script src="i18n.js"></script>
+
+</body>
+</html>

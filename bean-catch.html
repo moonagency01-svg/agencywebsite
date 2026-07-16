@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bean Catch — Moon Agency</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Minimal standalone chrome for the popup/overlay window — no nav or footer needed here */
+  body{
+    max-width:460px;
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+    padding:16px;
+  }
+  .bc-header{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:14px;
+  }
+  .bc-brand{display:flex;align-items:center;gap:8px;}
+  .bc-brand img{width:26px;height:26px;border-radius:6px;}
+  .bc-brand span{font-weight:800;color:var(--gold);font-size:.95rem;}
+  .bc-close{
+    background:none;border:1px solid var(--violet-border);color:var(--text-light);
+    width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:1rem;
+  }
+  .bc-title{color:var(--gold);font-weight:800;font-size:1.1rem;margin-bottom:4px;}
+  .bc-sub{color:var(--text-muted);font-size:.8rem;margin-bottom:14px;}
+</style>
+</head>
+<body>
+
+  <div class="bc-header">
+    <div class="bc-brand">
+      <img src="images/logo.png" alt="Moon Agency logo">
+      <span>Moon Agency</span>
+    </div>
+    <button class="bc-close" id="closeBtn" title="Close" aria-label="Close">✕</button>
+  </div>
+
+  <div class="bc-title">Bean Catch</div>
+  <div class="bc-sub">Catch falling beans with your basket. Miss too many and it's game over.</div>
+
+  <div class="web-game">
+    <div class="web-game-hud">
+      <span>Score: <span class="score" id="scoreOut">0</span></span>
+      <span>Time: <span id="timeOut">30</span>s</span>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+    <div class="web-game-controls">
+      <button id="startBtn">Start Game</button>
+      <button id="resetBtn" class="secondary">Reset</button>
+    </div>
+    <p class="web-game-hint">Use ← → arrow keys, A/D, or drag on the board (touch) to move the basket.</p>
+  </div>
+
+  <script>
+    // If this page was opened as a real popup window (desktop), the close
+    // button closes the window. If it's showing inside a mobile overlay
+    // iframe instead, closing is handled by the parent page listening for
+    // this postMessage, since an iframe can't close itself or its parent.
+    document.getElementById('closeBtn').addEventListener('click', () => {
+      if (window.opener) {
+        window.close();
+      } else if (window.parent !== window) {
+        window.parent.postMessage('close-bean-catch', '*');
+      }
+    });
+  </script>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const scoreOut = document.getElementById('scoreOut');
+    const timeOut = document.getElementById('timeOut');
+    const startBtn = document.getElementById('startBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    let W, H;
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * devicePixelRatio;
+      canvas.height = rect.height * devicePixelRatio;
+      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+      W = rect.width;
+      H = rect.height;
+    }
+    window.addEventListener('resize', resizeCanvas);
+
+    const basket = { w: 70, h: 20, x: 0, y: 0, speed: 6 };
+    let beans = [];
+    let score = 0;
+    let timeLeft = 30;
+    let running = false;
+    let spawnTimer = 0;
+    let animId = null;
+    let countdownId = null;
+    const keys = {};
+
+    function resetGame() {
+      running = false;
+      score = 0;
+      timeLeft = 30;
+      beans = [];
+      scoreOut.textContent = score;
+      timeOut.textContent = timeLeft;
+      resizeCanvas();
+      basket.x = W / 2 - basket.w / 2;
+      basket.y = H - 34;
+      draw();
+      cancelAnimationFrame(animId);
+      clearInterval(countdownId);
+      startBtn.disabled = false;
+      startBtn.textContent = "Start Game";
+    }
+
+    function spawnBean() {
+      const emojis = ["💰", "🫘", "⭐"];
+      beans.push({
+        x: Math.random() * (W - 20) + 10,
+        y: -20,
+        speed: 1.5 + Math.random() * 1.8,
+        emoji: emojis[Math.floor(Math.random() * emojis.length)]
+      });
+    }
+
+    function update() {
+      if (keys['ArrowLeft'] || keys['a']) basket.x -= basket.speed;
+      if (keys['ArrowRight'] || keys['d']) basket.x += basket.speed;
+      basket.x = Math.max(0, Math.min(W - basket.w, basket.x));
+
+      spawnTimer++;
+      if (spawnTimer > 45) {
+        spawnBean();
+        spawnTimer = 0;
+      }
+
+      beans.forEach(b => b.y += b.speed);
+
+      beans = beans.filter(b => {
+        if (b.y > H - 40 && b.y < H - 10 &&
+            b.x > basket.x - 10 && b.x < basket.x + basket.w + 10) {
+          score++;
+          scoreOut.textContent = score;
+          return false;
+        }
+        return b.y < H + 20;
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      ctx.fillStyle = "#ffcc33";
+      ctx.beginPath();
+      ctx.roundRect(basket.x, basket.y, basket.w, basket.h, 6);
+      ctx.fill();
+
+      ctx.font = "20px sans-serif";
+      ctx.textAlign = "center";
+      beans.forEach(b => ctx.fillText(b.emoji, b.x, b.y));
+    }
+
+    function loop() {
+      if (!running) return;
+      update();
+      draw();
+      animId = requestAnimationFrame(loop);
+    }
+
+    function startGame() {
+      if (running) return;
+      resetGame();
+      running = true;
+      startBtn.disabled = true;
+      startBtn.textContent = "Playing…";
+      loop();
+      countdownId = setInterval(() => {
+        timeLeft--;
+        timeOut.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          running = false;
+          clearInterval(countdownId);
+          cancelAnimationFrame(animId);
+          startBtn.disabled = false;
+          startBtn.textContent = "Play Again";
+        }
+      }, 1000);
+    }
+
+    window.addEventListener('keydown', e => { keys[e.key] = true; });
+    window.addEventListener('keyup', e => { keys[e.key] = false; });
+
+    function moveBasketToX(clientX) {
+      const rect = canvas.getBoundingClientRect();
+      basket.x = clientX - rect.left - basket.w / 2;
+      basket.x = Math.max(0, Math.min(W - basket.w, basket.x));
+    }
+    canvas.addEventListener('touchmove', e => {
+      e.preventDefault();
+      moveBasketToX(e.touches[0].clientX);
+    }, { passive: false });
+    canvas.addEventListener('mousedown', () => { canvas._dragging = true; });
+    window.addEventListener('mouseup', () => { canvas._dragging = false; });
+    canvas.addEventListener('mousemove', e => {
+      if (canvas._dragging) moveBasketToX(e.clientX);
+    });
+
+    startBtn.addEventListener('click', startGame);
+    resetBtn.addEventListener('click', resetGame);
+
+    resetGame();
+  </script>
+
+</body>
+</html>
