@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply to Join — Moon Agency</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!--
+    ============================================================
+    Connected to the real Moon Agency Google Form.
+    Form ID: 1FAIpQLSfXsQPnVXfmN1LrWbMBOGvdizHZhdz28OhqISTZSVoDuY4jkg
+
+    Field mapping (confirmed from a pre-filled link on 2026-07-15):
+      Bigo Name     -> entry.12116813
+      Bigo ID       -> entry.984883584
+      First Name    -> entry.1388299649
+      Middle Name   -> entry.424198630
+      Last Name     -> entry.1792266998
+      Gender        -> entry.841505408   (Male / Female / Other)
+      Age           -> entry.1619247261  (18 - 30 / 31 - 40 / 41 - 50 / 51 or above)
+      Email         -> entry.1413375404
+      Recruited by  -> entry.1568115581  (fixed value "Luna Moon Agency" —
+                        submitted as a hidden field, not shown to applicants
+                        since it's the only valid answer)
+    ============================================================
+  -->
+
+  <header>
+    <div class="brand">
+      <img src="images/logo.png" alt="Moon Agency logo">
+      <span>Moon Agency</span>
+    </div>
+    <div class="header-right">
+      <select class="lang">
+        <option value="en">English</option>
+        <option value="tl">Tagalog</option>
+      </select>
+      <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="site-nav" id="siteNav">
+    <a href="index.html"><span class="ico">🏠</span><span data-i18n="nav.home">Home</span></a>
+    <a href="host.html"><span class="ico">👤</span><span data-i18n="nav.host">Host</span></a>
+    <a href="apply.html" class="active"><span class="ico">✍️</span><span data-i18n="nav.apply">Apply</span></a>
+    <a href="pk-event.html"><span class="ico">⚔️</span><span data-i18n="nav.pkevent">PK Event</span></a>
+    <a href="calculator.html"><span class="ico">🧮</span><span data-i18n="nav.calculator">Calculator</span></a>
+    <a href="tutorial.html"><span class="ico">📘</span><span data-i18n="nav.tutorial">Tutorial</span></a>
+    <a href="game.html"><span class="ico">🎮</span><span data-i18n="nav.game">Game</span></a>
+    <a href="ask-luna.html"><span class="ico">🐾</span><span data-i18n="nav.askluna">Ask Luna</span></a>
+    <a href="about.html"><span class="ico">ℹ️</span><span data-i18n="nav.about">About</span></a>
+  </nav>
+
+  <main>
+    <section class="apply-page">
+      <h2>Apply to Become a Host</h2>
+      <p class="lead">Fill this out and it'll come straight to us — no need to leave the site. We'll follow up by email once we review your application.</p>
+
+      <form class="apply-form" id="applyForm"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSfXsQPnVXfmN1LrWbMBOGvdizHZhdz28OhqISTZSVoDuY4jkg/formResponse"
+            method="POST" target="hidden_iframe">
+
+        <label for="bigoName">Bigo Name <span class="required">*</span></label>
+        <input type="text" id="bigoName" name="entry.12116813" required>
+
+        <label for="bigoId">Bigo ID <span class="required">*</span></label>
+        <input type="text" id="bigoId" name="entry.984883584" required>
+
+        <label for="firstName">First Name <span class="required">*</span></label>
+        <input type="text" id="firstName" name="entry.1388299649" required>
+
+        <label for="middleName">Middle Name</label>
+        <input type="text" id="middleName" name="entry.424198630" placeholder="Leave blank or type 'None' if not applicable">
+
+        <label for="lastName">Last Name <span class="required">*</span></label>
+        <input type="text" id="lastName" name="entry.1792266998" required>
+        <label for="gender">Gender <span class="required">*</span></label>
+        <select id="gender" name="entry.841505408" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <label for="age">Age <span class="required">*</span></label>
+        <select id="age" name="entry.1619247261" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="18 - 30">18-30</option>
+          <option value="31 - 40">31-40</option>
+          <option value="41 - 50">41-50</option>
+          <option value="51 or above">51 or above</option>
+        </select>
+
+        <label for="email">Email <span class="required">*</span></label>
+        <input type="email" id="email" name="entry.1413375404" required>
+
+        <!-- "Recruited by" only has one valid answer in the real form,
+             so it's submitted automatically as a hidden field — nothing
+             for the applicant to fill in. -->
+        <input type="hidden" name="entry.1568115581" value="Luna Moon Agency">
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="ageConfirm" required>
+          <label for="ageConfirm">I confirm I am 18 years of age or older.</label>
+        </div>
+
+        <button type="submit" id="applySubmitBtn">Submit Application</button>
+      </form>
+
+      <div class="apply-success" id="applySuccess">
+        <div class="check">🎉</div>
+        <h3>Application received!</h3>
+        <p>Thanks for applying to Moon Agency — a manager will reach out to you by email soon.</p>
+      </div>
+
+      <!-- Hidden iframe: the form submits into this instead of navigating
+           the whole page away to Google's domain. -->
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="Moon Agency logo">
+          <span>Moon Agency</span>
+        </div>
+        <p data-i18n="footer.tagline">Official BIGO Live PH agency helping hosts grow, earn, and thrive on stream.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="host.html" data-i18n="nav.host">Host</a>
+        <a href="apply.html" data-i18n="nav.apply">Apply</a>
+        <a href="pk-event.html" data-i18n="nav.pkevent">PK Event</a>
+        <a href="calculator.html" data-i18n="nav.calculator">Calculator</a>
+        <a href="tutorial.html" data-i18n="nav.tutorial">Tutorial</a>
+        <a href="game.html" data-i18n="nav.game">Game</a>
+        <a href="ask-luna.html" data-i18n="nav.askluna">Ask Luna</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📧 Manager<br><a href="mailto:1234@gmail.com">1234@gmail.com</a></p>
+        <p>🤝 Co-Manager Eka<br><a href="mailto:5678@gmail.com">5678@gmail.com</a></p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p data-i18n="footer.copyright">&copy; 2025 Moon Agency. All rights reserved. Hosts must be 18 years or older to apply.</p>
+      <div class="footer-legal-links">
+        <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="terms-of-service.html" data-i18n="footer.terms">Terms of Service</a>
+        <a href="cookie-policy.html" data-i18n="footer.cookies">Cookie Policy</a>
+        <button id="manageCookiesBtn" type="button" data-i18n="footer.manageCookies">Manage Cookie Preferences</button>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const burgerBtn = document.getElementById('burgerBtn');
+    const siteNav = document.getElementById('siteNav');
+    burgerBtn.addEventListener('click', () => {
+      const isOpen = siteNav.classList.toggle('open');
+      burgerBtn.classList.toggle('open', isOpen);
+      burgerBtn.setAttribute('aria-expanded', isOpen);
+    });
+  </script>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-inner">
+      <p data-i18n-html="cookieBanner.text">We use cookies for essential site function and, where you consent, for embedded YouTube videos that may set their own cookies. See our <a href="cookie-policy.html">Cookie Policy</a> for details.</p>
+      <div class="cookie-actions">
+        <button id="cookieReject" type="button" data-i18n="cookieBanner.reject">Reject non-essential</button>
+        <button id="cookieAccept" type="button" data-i18n="cookieBanner.accept">Accept all</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      function getCookie(name){
+        const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return match ? decodeURIComponent(match[1]) : null;
+      }
+      function setCookie(name, value, days){
+        const d = new Date();
+        d.setTime(d.getTime() + days*24*60*60*1000);
+        document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
+      }
+      const banner = document.getElementById('cookieBanner');
+      const acceptBtn = document.getElementById('cookieAccept');
+      const rejectBtn = document.getElementById('cookieReject');
+      const manageBtn = document.getElementById('manageCookiesBtn');
+
+      function showBanner(){ if (banner) banner.classList.add('show'); }
+      function hideBanner(){ if (banner) banner.classList.remove('show'); }
+
+      if (!getCookie('cookie_consent')) {
+        showBanner();
+      }
+
+      if (acceptBtn) acceptBtn.addEventListener('click', function(){
+        setCookie('cookie_consent', 'accepted', 365);
+        hideBanner();
+      });
+      if (rejectBtn) rejectBtn.addEventListener('click', function(){
+        setCookie('cookie_consent', 'rejected', 365);
+        hideBanner();
+      });
+      if (manageBtn) manageBtn.addEventListener('click', showBanner);
+    })();
+  </script>
+
+  <!-- Application form submit handling -->
+  <script>
+    const applyForm = document.getElementById('applyForm');
+    const applySubmitBtn = document.getElementById('applySubmitBtn');
+    const applySuccess = document.getElementById('applySuccess');
+    const hiddenIframe = document.getElementById('hidden_iframe');
+    let formSubmitted = false;
+
+    applyForm.addEventListener('submit', function(){
+      formSubmitted = true;
+      applySubmitBtn.disabled = true;
+      applySubmitBtn.textContent = 'Submitting...';
+      // The form itself is allowed to submit normally here — its
+      // target="hidden_iframe" means the browser loads the response
+      // into the hidden iframe below instead of navigating this page.
+    });
+
+    hiddenIframe.addEventListener('load', function(){
+      if (!formSubmitted) return; // ignore the iframe's initial blank load
+      applySubmitBtn.disabled = false;
+      applySubmitBtn.textContent = 'Submit Application';
+      applyForm.style.display = 'none';
+      applySuccess.classList.add('show');
+      formSubmitted = false;
+    });
+  </script>
+
+  <script src="i18n.js"></script>
+
+</body>
+</html>
