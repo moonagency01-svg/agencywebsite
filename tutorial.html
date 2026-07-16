@@ -1,111 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tutorial</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial — Moon Agency</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">
-      <img src="images/logo.png" alt="My Logo">
-      <span class="company-name">Moon Agency</span>
-    </div>
 
-   
-    <!-- Language Selector -->
-    <div class="lang-select">
-      <label for="lang">Language:</label>
-      <select id="lang">
+  <header>
+    <div class="brand">
+      <img src="images/logo.png" alt="Moon Agency logo">
+      <span>Moon Agency</span>
+    </div>
+    <div class="header-right">
+      <select class="lang">
         <option value="en">English</option>
         <option value="tl">Tagalog</option>
       </select>
+      <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-
-    <!-- Part Selector -->
-    <div class="part-select">
-      <label for="part">Part:</label>
-      <select id="part">
-        <option value="part1">1</option>
-        <option value="part2">2</option>
-      </select>
-    </div>
-
-    <!-- Hamburger Menu -->
-    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-    <nav id="navbar">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="host.html">Host</a></li>
-        <li><a href="pk-event.html">PK Event</a></li>
-        <li><a href="calculator.html">Calculator</a></li>
-        <li><a href="tutorial.html">Tutorial</a></li>
-        <li><a href="game.html">Game</a></li>
-        <li><a href="about.html">About</a></li>
-   
-      </ul>
-    </nav>
   </header>
 
- <!-- Main Content -->
+  <nav class="site-nav" id="siteNav">
+    <a href="index.html" class="active"><span class="ico">🏠</span><span data-i18n="nav.home">Home</span></a>
+    <a href="host.html"><span class="ico">👤</span><span data-i18n="nav.host">Host</span></a>
+    <a href="apply.html"><span class="ico">✍️</span><span data-i18n="nav.apply">Apply</span></a>
+    <a href="pk-event.html"><span class="ico">⚔️</span><span data-i18n="nav.pkevent">PK Event</span></a>
+    <a href="calculator.html"><span class="ico">🧮</span><span data-i18n="nav.calculator">Calculator</span></a>
+    <a href="tutorial.html"><span class="ico">📘</span><span data-i18n="nav.tutorial">Tutorial</span></a>
+    <a href="game.html"><span class="ico">🎮</span><span data-i18n="nav.game">Game</span></a>
+    <a href="ask-luna.html"><span class="ico">🐾</span><span data-i18n="nav.askluna">Ask Luna</span></a>
+    <a href="about.html"><span class="ico">ℹ️</span><span data-i18n="nav.about">About</span></a>
+  </nav>
+
   <main>
-    <h2>Tutorial Videos</h2>
+    <section class="tutorial-section">
+      <h2>Tutorial Videos</h2>
 
-    <!-- Playlist Containers -->
-    <div id="part1-en" class="playlist">
-      <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/videoseries?list=PLs8eaN3BYBws-Aiyz3ZFHa5d6EQ4cuVyZ"
-        title="Part 1 English Playlist"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-    </div>
+      <div class="tutorial-controls">
+        <div class="control-group">
+          <label for="lang-select">Language</label>
+          <select id="lang-select">
+            <option value="en">English</option>
+            <option value="tl">Tagalog</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="part">Part</label>
+          <select id="part">
+            <option value="part1">1</option>
+            <option value="part2">2</option>
+          </select>
+        </div>
+      </div>
 
-    <div id="part1-tl" class="playlist" style="display:none;">
-      <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/videoseries?list=PLs8eaN3BYBwtaIb-mGK-2LXLyxcoMQ1Qf"
-        title="Part 1 Tagalog Playlist"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-    </div>
+      <!-- Playlist Containers -->
+      <div id="part1-en" class="playlist">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/videoseries?list=PLs8eaN3BYBws-Aiyz3ZFHa5d6EQ4cuVyZ"
+          title="Part 1 English Playlist"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
 
-    <div id="part2-en" class="playlist" style="display:none;">
-      <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/videoseries?list=PLs8eaN3BYBwv3xke5QrdIPnWiOvSLk3v9"
-        title="Part 2 English Playlist"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-    </div>
+      <div id="part1-tl" class="playlist" style="display:none;">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/videoseries?list=PLs8eaN3BYBwtaIb-mGK-2LXLyxcoMQ1Qf"
+          title="Part 1 Tagalog Playlist"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
 
-    <div id="part2-tl" class="playlist" style="display:none;">
-      <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/videoseries?list=PLs8eaN3BYBwsMGZ53Lc-KxAA9Q6Tmi6Aq"
-        title="Part 2 Tagalog Playlist"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-    </div>
+      <div id="part2-en" class="playlist" style="display:none;">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/videoseries?list=PLs8eaN3BYBwv3xke5QrdIPnWiOvSLk3v9"
+          title="Part 2 English Playlist"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+
+      <div id="part2-tl" class="playlist" style="display:none;">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/videoseries?list=PLs8eaN3BYBwsMGZ53Lc-KxAA9Q6Tmi6Aq"
+          title="Part 2 Tagalog Playlist"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+    </section>
   </main>
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="Moon Agency logo">
+          <span>Moon Agency</span>
+        </div>
+        <p data-i18n="footer.tagline">Official BIGO Live PH agency helping hosts grow, earn, and thrive on stream.</p>
+      </div>
 
-  <!-- Footer -->
-<footer class="footer-contact">
-  <p>Contact Us:
-    <br>
-    📧 Manager:<a href="mailto:MoonAgency01@gmail.com">MoonAgency01@gmail.com</a> 
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="host.html" data-i18n="nav.host">Host</a>
+        <a href="pk-event.html" data-i18n="nav.pkevent">PK Event</a>
+        <a href="calculator.html" data-i18n="nav.calculator">Calculator</a>
+        <a href="tutorial.html" data-i18n="nav.tutorial">Tutorial</a>
+        <a href="game.html" data-i18n="nav.game">Game</a>
+        <a href="ask-luna.html" data-i18n="nav.askluna">Ask Luna</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+      </div>
 
-<br>
-    🤝 Co-Manager Eka: <a href="mailto:Iricabryan@gmail.com">Iricabryan@gmail.com</a></p>
-  <p>&copy; 2025 Moon Agency</p>
-</footer>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📧 Manager<br><a href="mailto:1234@gmail.com">1234@gmail.com</a></p>
+        <p>🤝 Co-Manager Eka<br><a href="mailto:5678@gmail.com">5678@gmail.com</a></p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+    </div>
 
+    <div class="footer-bottom">
+      <p data-i18n="footer.copyright">&copy; 2025 Moon Agency. All rights reserved. Hosts must be 18 years or older to apply.</p>
+      <div class="footer-legal-links">
+        <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="terms-of-service.html" data-i18n="footer.terms">Terms of Service</a>
+        <a href="cookie-policy.html" data-i18n="footer.cookies">Cookie Policy</a>
+        <button id="manageCookiesBtn" type="button" data-i18n="footer.manageCookies">Manage Cookie Preferences</button>
+      </div>
+    </div>
+  </footer>
 
-  <!-- JS for Switching -->
   <script>
-    const langSelect = document.getElementById("lang");
+    const burgerBtn = document.getElementById('burgerBtn');
+    const siteNav = document.getElementById('siteNav');
+    burgerBtn.addEventListener('click', () => {
+      const isOpen = siteNav.classList.toggle('open');
+      burgerBtn.classList.toggle('open', isOpen);
+      burgerBtn.setAttribute('aria-expanded', isOpen);
+    });
+  </script>
+
+  <script>
+    const langSelect = document.getElementById("lang-select");
     const partSelect = document.getElementById("part");
 
     const playlists = {
@@ -116,10 +162,7 @@
     };
 
     function updatePlaylist() {
-      // Hide all
       Object.values(playlists).forEach(el => el.style.display = "none");
-
-      // Build key (like "part1-en" or "part2-tl")
       const key = partSelect.value + "-" + langSelect.value;
       playlists[key].style.display = "block";
     }
@@ -127,15 +170,54 @@
     langSelect.addEventListener("change", updatePlaylist);
     partSelect.addEventListener("change", updatePlaylist);
   </script>
-<script>
-    const toggle = document.getElementById("menu-toggle");
-    const navbar = document.getElementById("navbar");
 
-    toggle.addEventListener("click", () => {
-      navbar.classList.toggle("active");
-    });
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-inner">
+      <p data-i18n-html="cookieBanner.text">We use cookies for essential site function and, where you consent, for embedded YouTube videos that may set their own cookies. See our <a href="cookie-policy.html">Cookie Policy</a> for details.</p>
+      <div class="cookie-actions">
+        <button id="cookieReject" type="button" data-i18n="cookieBanner.reject">Reject non-essential</button>
+        <button id="cookieAccept" type="button" data-i18n="cookieBanner.accept">Accept all</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      function getCookie(name){
+        const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return match ? decodeURIComponent(match[1]) : null;
+      }
+      function setCookie(name, value, days){
+        const d = new Date();
+        d.setTime(d.getTime() + days*24*60*60*1000);
+        document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
+      }
+      const banner = document.getElementById('cookieBanner');
+      const acceptBtn = document.getElementById('cookieAccept');
+      const rejectBtn = document.getElementById('cookieReject');
+      const manageBtn = document.getElementById('manageCookiesBtn');
+
+      function showBanner(){ if (banner) banner.classList.add('show'); }
+      function hideBanner(){ if (banner) banner.classList.remove('show'); }
+
+      if (!getCookie('cookie_consent')) {
+        showBanner();
+      }
+
+      if (acceptBtn) acceptBtn.addEventListener('click', function(){
+        setCookie('cookie_consent', 'accepted', 365);
+        hideBanner();
+      });
+      if (rejectBtn) rejectBtn.addEventListener('click', function(){
+        setCookie('cookie_consent', 'rejected', 365);
+        hideBanner();
+      });
+      if (manageBtn) manageBtn.addEventListener('click', showBanner);
+    })();
   </script>
-  
+
+  <script src="i18n.js"></script>
+
 </body>
 </html>
-
