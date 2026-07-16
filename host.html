@@ -1,220 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Host</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Hosts — Moon Agency</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">
-      <img src="images/logo.png" alt="My Logo">
-      <span class="company-name">Moon Agency</span>
-    </div>
 
-    <!-- Language Selector -->
-    <div class="lang-select">
-      <select>
+  <header>
+    <div class="brand">
+      <img src="images/logo.png" alt="Moon Agency logo">
+      <span>Moon Agency</span>
+    </div>
+    <div class="header-right">
+      <select class="lang">
         <option value="en">English</option>
         <option value="tl">Tagalog</option>
       </select>
+      <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-
-    <!-- Hamburger Menu -->
-    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-    <nav id="navbar">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="host.html">Host</a></li>
-        <li><a href="pk-event.html">PK Event</a></li>
-        <li><a href="calculator.html">Calculator</a></li>
-        <li><a href="tutorial.html">Tutorial</a></li>
-        <li><a href="game.html">Game</a></li>
-        <li><a href="about.html">About</a></li>
-      
-      </ul>
-    </nav>
   </header>
 
-  <!-- Main Content -->
-   <main>
+  <nav class="site-nav" id="siteNav">
+    <a href="index.html"><span class="ico">🏠</span><span data-i18n="nav.home">Home</span></a>
+    <a href="host.html" class="active"><span class="ico">👤</span><span data-i18n="nav.host">Host</span></a>
+    <a href="pk-event.html"><span class="ico">⚔️</span><span data-i18n="nav.pkevent">PK Event</span></a>
+    <a href="calculator.html"><span class="ico">🧮</span><span data-i18n="nav.calculator">Calculator</span></a>
+    <a href="tutorial.html"><span class="ico">📘</span><span data-i18n="nav.tutorial">Tutorial</span></a>
+    <a href="game.html"><span class="ico">🎮</span><span data-i18n="nav.game">Game</span></a>
+    <a href="ask-luna.html"><span class="ico">🐾</span><span data-i18n="nav.askluna">Ask Luna</span></a>
+    <a href="about.html"><span class="ico">ℹ️</span><span data-i18n="nav.about">About</span></a>
+  </nav>
+
+  <main>
     <section id="hosts">
       <h2>Our Hosts</h2>
 
-<!-- Download Button -->
-    <div class="download-bigo">
-      <p>Want to join and support our hosts?</p>
-      <a href="https://livestream.onelink.me/ZYcM/IricaAmante" target="_blank" class="download-btn">
-        📲 Click Here to Download Bigo Live on Android or IOS
-      </a>
-    </div>
-      
+      <div class="download-bigo">
+        <p>Want to join and support our hosts?</p>
+        <a href="https://slink.bigovideo.tv/dbSGK" target="_blank" class="download-btn">
+          📲 Click Here to Download Bigo Live on Android or iOS
+        </a>
+        <a href="apply.html" class="download-btn" style="margin-top:10px; display:inline-block;">
+          ✍️ Apply to Become a Host
+        </a>
+      </div>
+
+      <div class="pk-toolbar" style="margin-top:20px;">
+        <input
+          type="text"
+          id="hostSearchBox"
+          placeholder="Search by name, ID, platform, or content type..."
+        >
+      </div>
+      <p class="pk-status" id="hostSearchStatus"></p>
+
       <div class="carousel" id="host-carousel">
         <!-- Hosts will be loaded here -->
       </div>
     </section>
   </main>
 
-<!-- Modal -->
-<div id="hostModal" class="modal">
-  <div class="modal-content modal-grid">
-    <span class="close">&times;</span>
+  <!-- Modal -->
+  <div id="hostModal" class="modal">
+    <div class="modal-content modal-grid">
+      <span class="close">&times;</span>
 
-    <!-- Left column: PK events -->
-    <div class="modal-left">
-      <h3>PK Events</h3>
-      <ul id="modalEvents">
-        <li>Loading events...</li>
-      </ul>
-    </div>
+      <div class="modal-left">
+        <h3>PK Events</h3>
+        <ul id="modalEvents">
+          <li>Loading events...</li>
+        </ul>
+      </div>
 
-    <!-- Right column: host info -->
-    <div class="modal-right">
-      <img id="modalImage" src="" alt="Host">
-      <h3 id="modalName"></h3>
-      <p id="modalId"></p>
-      <div id="modalVideoContainer">
-        <p>No video available</p>
+      <div class="modal-right">
+        <img id="modalImage" src="" alt="Host">
+        <h3 id="modalName"></h3>
+        <p id="modalId"></p>
+
+        <div class="modal-meta" id="modalMeta">
+          <!-- Schedule / platform / content-type rows injected by JS -->
+        </div>
+
+        <div class="modal-socials" id="modalSocials">
+          <!-- Social icons injected by JS, only for platforms the host has -->
+        </div>
+
+        <div id="modalVideoContainer">
+          <p>No video available</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-const apiUrl = "https://script.google.com/macros/s/AKfycbw6Xy9qvRVLENCxh5cZnW5xWIUcyGJIGgju57feqtWygpQ__SVFLlBgFzuqWIOJWp-vSQ/exec"; // Your host API URL
-const eventApiUrl = "https://script.google.com/macros/s/AKfycbz2jYz0ifZvFoQi4_Ka11rSUnfzoiZUfsJldXyIvn3mpnwGCEqftbvDPFy_FBUpJHR7dQ/exec"; // Your PK event API URL
-const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}`;
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="Moon Agency logo">
+          <span>Moon Agency</span>
+        </div>
+        <p data-i18n="footer.tagline">Official BIGO Live PH agency helping hosts grow, earn, and thrive on stream.</p>
+      </div>
 
-const carousel = document.getElementById("host-carousel");
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="host.html" data-i18n="nav.host">Host</a>
+        <a href="apply.html" data-i18n="nav.apply">Apply</a>
+        <a href="pk-event.html" data-i18n="nav.pkevent">PK Event</a>
+        <a href="calculator.html" data-i18n="nav.calculator">Calculator</a>
+        <a href="tutorial.html" data-i18n="nav.tutorial">Tutorial</a>
+        <a href="game.html" data-i18n="nav.game">Game</a>
+        <a href="ask-luna.html" data-i18n="nav.askluna">Ask Luna</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+      </div>
 
-// Modal elements
-const modal = document.getElementById("hostModal");
-const modalImg = document.getElementById("modalImage");
-const modalName = document.getElementById("modalName");
-const modalId = document.getElementById("modalId");
-const modalVideoContainer = document.getElementById("modalVideoContainer");
-const modalEvents = document.getElementById("modalEvents");
-const closeModal = document.querySelector(".close");
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📧 Manager<br><a href="mailto:MoonAgency01@gmail.com">MoonAgency01@gmail.com</a></p>
+        <p>🤝 Co-Manager Eka<br><a href="Iricabryan@gmail.com">Iricabryan@gmail.com</a></p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+    </div>
 
-carousel.innerHTML = "<p>Loading hosts...</p>";
+    <div class="footer-bottom">
+      <p data-i18n="footer.copyright">&copy; 2025 Moon Agency. All rights reserved. Hosts must be 18 years or older to apply.</p>
+      <div class="footer-legal-links">
+        <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="terms-of-service.html" data-i18n="footer.terms">Terms of Service</a>
+        <a href="cookie-policy.html" data-i18n="footer.cookies">Cookie Policy</a>
+        <button id="manageCookiesBtn" type="button" data-i18n="footer.manageCookies">Manage Cookie Preferences</button>
+      </div>
+    </div>
+  </footer>
 
-fetch(proxyUrl)
-  .then(res => res.json())
-  .then(data => {
-    carousel.innerHTML = "";
-
-    if (!data.length) {
-      carousel.innerHTML = "<p>No hosts found.</p>";
-      return;
-    }
-
-    data.forEach(host => {
-      const hostId = host.id;
-      const hostName = host.name;
-      const youtubeLink = host.youtube; // 3rd column in your sheet
-
-      if (!hostName) return;
-
-      const imgSrc = `images/hosts/${hostName}.webp`;
-      const fallbackSrc = `images/hosts/${hostName}.png`;
-      const defaultSrc = `images/hosts/default.webp`;
-
-      const card = document.createElement("div");
-      card.classList.add("host-card");
-      card.innerHTML = `
-        <img src="${imgSrc}" alt="${hostName}"
-             onerror="this.onerror=null;
-                      this.src='${fallbackSrc}';
-                      this.onerror=function(){this.src='${defaultSrc}'};">
-        <h3>${hostName}</h3>
-        <p>ID: ${hostId}</p>
-      `;
-
-      // Add click event to open modal
-      card.addEventListener("click", () => {
-        modal.style.display = "flex";
-        modalImg.src = imgSrc;
-        modalName.textContent = hostName;
-        modalId.textContent = `ID: ${hostId}`;
-
-        // YouTube playlist embed
-        if (youtubeLink) {
-          modalVideoContainer.innerHTML = `
-            <iframe src="https://www.youtube.com/embed/videoseries?list=${youtubeLink}" 
-            allowfullscreen></iframe>
-          `;
-        } else {
-          modalVideoContainer.innerHTML = `<p>No video available</p>`;
-        }
-
-        // Fetch PK events for this host
-        fetch(eventApiUrl)
-          .then(res => res.json())
-          .then(events => {
-           const filtered = events.filter(e => e.id.toLowerCase() === hostId.toLowerCase());
-
-            if (filtered.length) {
-              modalEvents.innerHTML = filtered.map(e => `
-                <li>
-                  <strong>${e.event}</strong><br>
-                  ${e.date} ${e.time}<br>
-                  vs ${e.opponent}
-                </li>
-              `).join("");
-            } else {
-              modalEvents.innerHTML = `<li>No PK events found</li>`;
-            }
-          })
-          .catch(err => {
-            console.error("Error loading events:", err);
-            modalEvents.innerHTML = `<li>Failed to load events</li>`;
-          });
-      });
-
-      carousel.appendChild(card);
-    });
-  })
-  .catch(err => {
-    console.error("Error loading hosts:", err);
-    carousel.innerHTML = "<p>Unable to load hosts.</p>";
-  });
-
-// Close modal
-closeModal.addEventListener("click", () => {
-  modal.style.display = "none";
-});
-
-// Close if clicked outside content
-window.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.style.display = "none";
-  }
-});
-</script>
-
-  <!-- Footer -->
-<footer class="footer-contact">
-  <p>Contact Us:
-    <br>
-    📧 Manager:<a href="mailto:MoonAgency01@gmail.com">MoonAgency01@gmail.com</a> 
-
-<br>
-    🤝 Co-Manager Eka: <a href="mailto:Iricabryan@gmail.com">Iricabryan@gmail.com</a></p>
-  <p>&copy; 2025 Moon Agency</p>
-</footer>
-  <!-- JS for Menu Toggle -->
   <script>
-    const toggle = document.getElementById("menu-toggle");
-    const navbar = document.getElementById("navbar");
-
-    toggle.addEventListener("click", () => {
-      navbar.classList.toggle("active");
+    const burgerBtn = document.getElementById('burgerBtn');
+    const siteNav = document.getElementById('siteNav');
+    burgerBtn.addEventListener('click', () => {
+      const isOpen = siteNav.classList.toggle('open');
+      burgerBtn.classList.toggle('open', isOpen);
+      burgerBtn.setAttribute('aria-expanded', isOpen);
     });
   </script>
+
+
+
+  <script>
+    const apiUrl = "https://script.google.com/macros/s/AKfycbzPBy34M2Q3dvCjaBu-7nrdfYogQj1fz7g1Iy0gDi9oGHhiq_llbNFwpQXx9SK4lD28/exec";
+    const eventApiUrl = "https://script.google.com/macros/s/AKfycbz2jYz0ifZvFoQi4_Ka11rSUnfzoiZUfsJldXyIvn3mpnwGCEqftbvDPFy_FBUpJHR7dQ/exec";
+
+    // Loading host data via JSONP (a <script> tag), not fetch().
+    // Apps Script's /exec URL redirects internally without CORS headers,
+    // which fetch() correctly blocks as a cross-origin read — but <script>
+    // tags were never subject to CORS, so this loads the same data reliably
+    // with no third-party proxy needed.
+    function loadJsonp(url, timeoutMs = 10000) {
+      return new Promise((resolve, reject) => {
+        const callbackName = "jsonpCallback_" + Math.random().toString(36).slice(2);
+        const script = document.createElement("script");
+
+        const cleanup = () => {
+          delete window[callbackName];
+          script.remove();
+          clearTimeout(timer);
+        };
+
+        const timer = setTimeout(() => {
+          cleanup();
+          reject(new Error("JSONP request timed out"));
+        }, timeoutMs);
+
+        window[callbackName] = (data) => {
+          cleanup();
+          resolve(data);
+        };
+
+        script.src = url + (url.includes("?") ? "&" : "?") + "callback=" + callbackName;
+        script.onerror = () => {
+          cleanup();
+          reject(new Error("JSONP script failed to load"));
+        };
+
+        document.body.appendChild(script);
+      });
+    }
+
+    const carousel = document.getElementById("host-carousel");
+
+    const modal = document.getElementById("hostModal");
+    const modalImg = document.getElementById("modalImage");
+    const modalName = document.getElementById("modalName");
+    const modalId = document.getElementById("modalId");
+    const modalMeta = document.getElementById("modalMeta");
+    const modalSocials = document.getElementById("modalSocials");
+    const modalVideoContainer = document.getElementById("modalVideoContainer");
+    const modalEvents = document.getElementById("modalEvents");
+    const closeModal = document.querySelector(".close");
+
+    // Platform key -> [icon, label]. Add more here later if needed.
+    const SOCIAL_PLATFORMS = [
+      ["facebook", "📘", "Facebook"],
+      ["instagram", "📸", "Instagram"],
+      ["discord", "🎮", "Discord"],
+      ["tiktok", "🎵", "TikTok"],
+      ["x", "✖️", "X"],
+      ["other", "🔗", "Link"]
+    ];
+
+    function buildSocialLinksHtml(host, sizeClass) {
+      const links = SOCIAL_PLATFORMS
+        .filter(([key]) => host[key] && String(host[key]).trim() !== "")
+        .map(([key, icon, label]) =>
+          `<a href="${host[key]}" target="_blank" rel="noopener" title="${label}" aria-label="${label}">${icon}</a>`
+        );
+      return links.join("");
+    }
+
+    function buildCardMetaHtml(host) {
+      const rows = [];
+      if (host.schedule) rows.push(`<div class="host-meta-row"><span class="icon">🕒</span><span>${host.schedule}</span></div>`);
+      if (host.platform) rows.push(`<div class="host-meta-row"><span class="icon">📡</span><span>${host.platform}</span></div>`);
+      return rows.join("");
+    }
+
+    function buildContentTagsHtml(host) {
+      if (!host.contentType) return "";
+      const tags = host.contentType.split(",").map(t => t.trim()).filter(Boolean);
+      if (!tags.length) return "";
+      return `<div class="host-content-tags">${tags.map(t => `<span>${t}</span>`).join("")}</div>`;
+    }
+
+    carousel.innerHTML = "<p>Loading hosts...</p>";
+
+    loadJsonp(apiUrl)
+      .then(data => {
+        carousel.innerHTML = "";
+
+        if (!data.length) {
+          carousel.innerHTML = "<p>No hosts found.</p>";
+          return;
+        }
+
+        data.forEach(host => {
+          const hostId = host.id;
+          const hostName = host.name;
+          const youtubeLink = host.youtube;
+
+          if (!hostName) return;
+
+          const imgSrc = (host.image && host.image.trim() !== "")
+            ? host.image.trim()
+            : `images/hosts/${hostId}.webp`;
+          const fallbackSrc = `images/hosts/${hostId}.png`;
+          const defaultSrc = `images/hosts/default.webp`;
+
+          const socialsHtml = buildSocialLinksHtml(host);
+          const metaHtml = buildCardMetaHtml(host);
+          const tagsHtml = buildContentTagsHtml(host);
+
+          const card = document.createElement("div");
+          card.classList.add("host-card");
+          card.dataset.search = [
+            hostName, hostId, host.platform, host.contentType
+          ].filter(Boolean).join(" ").toLowerCase();
+          card.innerHTML = `
+            <img src="${imgSrc}" alt="${hostName}"
+                 onerror="this.onerror=null;
+                          this.src='${fallbackSrc}';
+                          this.onerror=function(){this.src='${defaultSrc}'};">
+            <h3>${hostName}</h3>
+            <p class="host-id">Bigo ID: ${hostId}</p>
+            <div class="host-meta">${metaHtml}</div>
+            ${tagsHtml}
+            <div class="host-socials">${socialsHtml}</div>
+          `;
+
+          card.addEventListener("click", () => {
+            modal.style.display = "flex";
+            modalImg.src = imgSrc;
+            modalName.textContent = hostName;
+            modalId.textContent = `Bigo ID: ${hostId}`;
+
+            const modalMetaRows = [];
+            if (host.schedule) modalMetaRows.push(`<div class="modal-meta-row"><span class="icon">🕒</span><span>${host.schedule}</span></div>`);
+            if (host.platform) modalMetaRows.push(`<div class="modal-meta-row"><span class="icon">📡</span><span>${host.platform}</span></div>`);
+            if (host.contentType) modalMetaRows.push(`<div class="modal-meta-row"><span class="icon">🎬</span><span>${host.contentType}</span></div>`);
+            modalMeta.innerHTML = modalMetaRows.join("");
+
+            modalSocials.innerHTML = buildSocialLinksHtml(host);
+
+            if (youtubeLink) {
+              modalVideoContainer.innerHTML = `
+                <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=${youtubeLink}"
+                allowfullscreen></iframe>
+              `;
+            } else {
+              modalVideoContainer.innerHTML = `<p>No video available</p>`;
+            }
+
+            fetch(eventApiUrl)
+              .then(res => res.json())
+              .then(events => {
+                const filtered = events.filter(e => e.id.toLowerCase() === hostId.toLowerCase());
+
+                if (filtered.length) {
+                  modalEvents.innerHTML = filtered.map(e => `
+                    <li>
+                      <strong>${e.event}</strong><br>
+                      ${e.date} ${e.time}<br>
+                      vs ${e.opponent}
+                    </li>
+                  `).join("");
+                } else {
+                  modalEvents.innerHTML = `<li>No PK events found</li>`;
+                }
+              })
+              .catch(err => {
+                console.error("Error loading events:", err);
+                modalEvents.innerHTML = `<li>Failed to load events</li>`;
+              });
+          });
+
+          carousel.appendChild(card);
+        });
+
+        wireHostSearch();
+      })
+      .catch(err => {
+        console.error("Error loading hosts:", err);
+        carousel.innerHTML = "<p>Unable to load hosts.</p>";
+      });
+
+    function wireHostSearch() {
+      const searchBox = document.getElementById("hostSearchBox");
+      const statusEl = document.getElementById("hostSearchStatus");
+      if (!searchBox) return;
+
+      searchBox.addEventListener("keyup", () => {
+        const filter = searchBox.value.trim().toLowerCase();
+        const cards = carousel.querySelectorAll(".host-card");
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const matches = !filter || card.dataset.search.includes(filter);
+          card.style.display = matches ? "" : "none";
+          if (matches) visibleCount++;
+        });
+
+        statusEl.textContent = filter
+          ? `Showing ${visibleCount} of ${cards.length} hosts`
+          : "";
+      });
+    }
+
+    closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  </script>
+
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-inner">
+      <p data-i18n-html="cookieBanner.text">We use cookies for essential site function and, where you consent, for embedded YouTube videos that may set their own cookies. See our <a href="cookie-policy.html">Cookie Policy</a> for details.</p>
+      <div class="cookie-actions">
+        <button id="cookieReject" type="button" data-i18n="cookieBanner.reject">Reject non-essential</button>
+        <button id="cookieAccept" type="button" data-i18n="cookieBanner.accept">Accept all</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      function getCookie(name){
+        const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return match ? decodeURIComponent(match[1]) : null;
+      }
+      function setCookie(name, value, days){
+        const d = new Date();
+        d.setTime(d.getTime() + days*24*60*60*1000);
+        document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
+      }
+      const banner = document.getElementById('cookieBanner');
+      const acceptBtn = document.getElementById('cookieAccept');
+      const rejectBtn = document.getElementById('cookieReject');
+      const manageBtn = document.getElementById('manageCookiesBtn');
+
+      function showBanner(){ if (banner) banner.classList.add('show'); }
+      function hideBanner(){ if (banner) banner.classList.remove('show'); }
+
+      if (!getCookie('cookie_consent')) {
+        showBanner();
+      }
+
+      if (acceptBtn) acceptBtn.addEventListener('click', function(){
+        setCookie('cookie_consent', 'accepted', 365);
+        window.dispatchEvent(new Event('cookie-consent-accepted'));
+        hideBanner();
+      });
+      if (rejectBtn) rejectBtn.addEventListener('click', function(){
+        setCookie('cookie_consent', 'rejected', 365);
+        hideBanner();
+      });
+      if (manageBtn) manageBtn.addEventListener('click', showBanner);
+    })();
+  </script>
+
+  <script src="analytics.js"></script>
+  <script src="i18n.js"></script>
+
 </body>
 </html>
-
-
-
